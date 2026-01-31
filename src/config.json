@@ -1,104 +1,96 @@
 {
   "site": {
-    "url": "https://drowsyindra.github.io",
-    "title": "博客",
-    "description": "这是一个有理想的人走过的漫长道路",
-    "keywords": "Kunyi,blog,dream,indra,博客,逐梦",
+    "url": "https://cjh1230.github.io",
+    "title": "崖岸笔记",
+    "description": "一个清醒的体验派信徒在过程与跳跃之间写下的航海日志",
+    "keywords": "cin,清醒的浪漫主义,过程即意义,探险家日记,建造与跳跃",
     "lang": "zh-CN",
     "favicon": "/favicon.ico",
     "appleTouchIcon": "/apple-touch-icon.png"
   },
   "author": {
-    "name": "Kunyi",
-    "twitterId": "@lxchapu",
+    "name": "cin",
+    "twitterId": "@cin",
     "avatar": "/img/avatar.jpg"
   },
   "hero": {
-    "name": "Kunyi",
-    "bio": "一个为理想痴狂实干的疯子",
-    "description": "理想是追随稚晖君,欢迎一同学习",
+    "name": "cin",
+    "bio": "带着计算器的诗人 · 清醒的纵身一跃者",
+    "description": "相信悬崖下是海，也相信过程本身即是抵达。理想是成为像稚晖君那样用工程浪漫主义解构世界的人。",
     "socials": [
       {
         "name": "Github",
         "icon": "icon-github",
-        "url": "https://github.com/drowsyindra",
+        "url": "https://github.com/cjh1230",
         "color": "rgb(239, 70, 107)"
       },
       {
         "name": "bilibili",
         "icon": "icon-bilibili",
-        "url": "https://space.bilibili.com/3546706348084176",
+        "url": "https://space.bilibili.com/1592337652",
         "color": "rgb(245, 154, 155)"
       },
       {
         "name": "Email",
         "icon": "icon-mail",
-        "url": "mailto:1162137506@qq.com",
+        "url": "2123277675@qq.com",
         "color": "rgb(150, 215, 201)"
       },
       {
         "name": "Zhihu",
         "icon": "icon-zhihu",
-        "url": "https://www.zhihu.com/people/wen-dao-81-2-70",
+        "url": "https://www.zhihu.com/people/74-56-28-6-18",
         "color": "rgb(42, 147, 213)"
-      },
-      {
-        "name": "X",
-        "icon": "icon-x",
-        "url": "https://x.com/kunyi68226",
-        "color": "rgb(106,90,205)"
       }
     ],
-    "yiyan": "装作一个白日梦想家，然后征服全世界。"
+    "yiyan": "我不设安全线，但相信过程会接住我。"
   },
   "color": {
     "accent": [
       { "light": "#F55555", "dark": "#FCCF31" },
       { "light": "#0396FF", "dark": "#ABDCFF" },
-      { "light": "#fb7287", "dark": "#99D8CF" },
-      { "light": "#F072B6", "dark": "#FFF886" },
+      { "light": "#FF9A76", "dark": "#FFD59E" },
+      { "light": "#32CCBC", "dark": "#90F7EC" },
       { "light": "#9F44D3", "dark": "#E2B0FF" },
       { "light": "#FF6666", "dark": "#A1CCD1" },
-      { "light": "#F6416C", "dark": "#838BC6" },
-      { "light": "#32CCBC", "dark": "#90F7EC" },
-      { "light": "#33A6B8", "dark": "#79F1A4" },
-      { "light": "#F55555", "dark": "#FCCF31" }
+      { "light": "#6BEFA3", "dark": "#A6FFCB" },
+      { "light": "#33A6B8", "dark": "#79F1A4" }
     ],
     "bg": {
-      "primary": { "light": "#fffff0", "dark": "#1c1c1e" },
-      "secondary": { "light": "#EEEEE0", "dark": "#27272a" }
+      "primary": { "light": "#fffff0", "dark": "#1a1a2e" },
+      "secondary": { "light": "#F5F5DC", "dark": "#27273a" }
     },
     "text": {
-      "primary": { "light": "#373a3c", "dark": "#ffffff" },
-      "secondary": { "light": "#71717a", "dark": "#d1d5db" }
+      "primary": { "light": "#2c3e50", "dark": "#e0e0f5" },
+      "secondary": { "light": "#7f8c8d", "dark": "#b0b0d0" }
     },
     "border": {
-      "primary": { "light": "#e4e4e7", "dark": "#3f3f46" }
+      "primary": { "light": "#e0d8c0", "dark": "#3a3a5e" }
     }
   },
   "menus": [
     {
-      "name": "首页",
+      "name": "崖岸日志",
       "link": "/",
       "icon": "icon-pantone"
     },
     {
-      "name": "归档",
+      "name": "航海图集",
       "link": "/archives",
       "icon": "icon-archive"
     },
     {
-      "name": "项目",
+      "name": "积木工坊",
       "link": "/projects",
       "icon": "icon-flask"
     },
     {
-      "name": "关于",
+      "name": "关于我",
       "link": "/about",
       "icon": "icon-ghost"
     },
     {
-      "name": "友链",
+      "name": "同航者",
       "link": "/friends",
       "icon": "icon-hearts"
     }
@@ -107,7 +99,7 @@
     "perPage": 10
   },
   "footer": {
-    "startTime": "2024-07-29T00:00:00Z"
+    "startTime": "2026-01-01T00:00:00Z"
   },
   "docSearch": {
     "appId": "",
@@ -118,7 +110,7 @@
     "serverURL": "https://waline-1-t8619760.deta.app/"
   },
   "sponsor": {
-    "wechat": "https://s2.loli.net/2024/08/03/6lXu4rHghkCmofV.jpg"
+    "wechat": "/img/appreciation.jpg"
   },
   "analytics": {
     "enable": false,

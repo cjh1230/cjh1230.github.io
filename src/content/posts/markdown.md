@@ -4,10 +4,10 @@ date: 2024-04-01
 summary: 这是一篇 Markdown 文章的示例。展示了 Markdown 的语法和渲染效果。
 category: 例子
 tags: [Markdown]
-draft: true
+draft: false
 ---
 
-下面是在 Astro 中编写 Markdown 内容时，可以使用的一些基本 Markdown 语法示例。
+下面是在 Astro 中编写 Markdown 内容时，可以使用的一些基本 Markdown 语法示例.
 
 ## 标题
 
