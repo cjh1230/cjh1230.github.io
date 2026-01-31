@@ -1,4 +1,4 @@
-title: Gyoza
-description: Gyoza 是一个使用 Astro 和 React 开发的响应式博客主题
+title: TIti
+description: 基于纯C语言和TCP协议实现、采用模块化工程架构和自定义文本协议的多用户消息转发服务器Demo
 image: https://s2.loli.net/2024/03/02/hba5MAilRXguZtr.webp
-link: https://github.com/lxchapu/astro-gyoza
+link: https://github.com/cjh1230/TIti
