@@ -8,7 +8,6 @@ import Highlight from '@/components/Highlight.astro'
   <div
     class="relative max-w-[1300px] mx-auto h-full px-4 grid lg:grid-cols-2 items-center justify-items-center"
   >
-    <!-- 左栏：文字与宣言 -->
     <div class="mt-[120px] lg:mt-0 max-w-[590px]">
       <h1 class="text-3xl text-center lg:text-left text-balance">
         你好，我是 <Highlight class="font-bold">{hero.name}</Highlight> 🌊<br />
@@ -43,17 +42,14 @@ import Highlight from '@/components/Highlight.astro'
       <SocialList className="mt-10" client:load />
     </div>
 
-    <!-- 右栏：头像与动态效果 -->
     <div class="mt-20 lg:mt-0 relative">
       <div class="relative size-[200px] lg:size-[300px] group">
-        <!-- 外层光环（象征“悬崖边的光晕”） -->
         <div
           class="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-accent/30 animate-pulse"
           style="animation-duration: 3s;"
         >
         </div>
 
-        <!-- 头像容器 -->
         <div
           class="size-full rounded-full overflow-hidden border-2 border-primary/50 bg-gradient-to-br from-white/10 to-black/10 dark:from-zinc-800 dark:to-zinc-900"
         >
@@ -65,7 +61,6 @@ import Highlight from '@/components/Highlight.astro'
           />
         </div>
 
-        <!-- 悬浮标签 -->
         <div
           class="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs px-3 py-1 rounded-full bg-primary/10 border border-primary/30 opacity-0 group-hover:opacity-100 transition-opacity"
         >
@@ -73,7 +68,6 @@ import Highlight from '@/components/Highlight.astro'
         </div>
       </div>
 
-      <!-- 右下角小彩蛋 -->
       <div class="absolute -right-4 bottom-10 text-xs rotate-12 opacity-60 hidden lg:block">
         <div class="animate-bounce" style="animation-duration: 5s;">
           🪐 今日计划完成度：<span class="font-mono">随缘%</span>
@@ -81,7 +75,6 @@ import Highlight from '@/components/Highlight.astro'
       </div>
     </div>
 
-    <!-- 底部引导与语录 -->
     <div class="mt-10 lg:mt-0 lg:absolute inset-x-0 bottom-0 flex flex-col items-center">
       <div class="max-w-xl px-4">
         <p class="text-sm text-center text-balance text-secondary italic">
@@ -102,7 +95,6 @@ import Highlight from '@/components/Highlight.astro'
 </div>
 
 <style>
-  /* 自定义动画：模拟“呼吸感” */
   @keyframes gentle-pulse {
     0%,
     100% {
