@@ -19,7 +19,7 @@ import rehypeKatex from 'rehype-katex'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://cjh1230.github.io',
+  site: 'https://drowsyindra.github.io',
   integrations: [tailwind(), react(), sitemap()],
   markdown: {
     syntaxHighlight: false,
