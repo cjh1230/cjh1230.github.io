@@ -22,25 +22,29 @@
         "name": "Github",
         "icon": "icon-github",
         "url": "https://github.com/cjh1230",
-        "color": "rgb(239, 70, 107)"
+        "color": "rgb(239, 70, 107)",
+        "motto": "这里存放理性构建的乐高"
       },
       {
         "name": "bilibili",
         "icon": "icon-bilibili",
         "url": "https://space.bilibili.com/1592337652",
-        "color": "rgb(245, 154, 155)"
+        "color": "rgb(245, 154, 155)",
+        "motto": "偶尔让兴奋感带路的地方"
       },
       {
         "name": "Email",
         "icon": "icon-mail",
         "url": "2123277675@qq.com",
-        "color": "rgb(150, 215, 201)"
+        "color": "rgb(150, 215, 201)",
+        "motto": "欢迎扔来任何“不确定的积木”"
       },
       {
         "name": "Zhihu",
         "icon": "icon-zhihu",
         "url": "https://www.zhihu.com/people/74-56-28-6-18",
-        "color": "rgb(42, 147, 213)"
+        "color": "rgb(42, 147, 213)",
+        "motto": "策略脑与兴奋感对话的现场"
       }
     ],
     "yiyan": "我不设安全线，但相信过程会接住我。"
@@ -72,34 +76,40 @@
     {
       "name": "崖岸日志",
       "link": "/",
-      "icon": "icon-pantone"
+      "icon": "icon-pantone",
+      "hint": "跳跃前的深呼吸"
     },
     {
       "name": "航海图集",
       "link": "/archives",
-      "icon": "icon-archive"
+      "icon": "icon-archive",
+      "hint": "所有抵达都是过程"
     },
     {
       "name": "积木工坊",
       "link": "/projects",
-      "icon": "icon-flask"
+      "icon": "icon-flask",
+      "hint": "理性与浪漫的焊接点"
     },
     {
       "name": "关于我",
       "link": "/about",
-      "icon": "icon-ghost"
+      "icon": "icon-ghost",
+      "hint": "一个不设防的建造者"
     },
     {
       "name": "同航者",
       "link": "/friends",
-      "icon": "icon-hearts"
+      "icon": "icon-hearts",
+      "hint": "共享海图的人"
     }
   ],
   "posts": {
-    "perPage": 10
+    "perPage": 5
   },
   "footer": {
-    "startTime": "2026-01-01T00:00:00Z"
+    "startTime": "2026-02-01T00:00:00Z",
+    "quote": "凡我所遇，皆成惊喜——哪怕只是学会了如何坠落"
   },
   "docSearch": {
     "appId": "",
@@ -107,10 +117,12 @@
     "indexName": ""
   },
   "waline": {
-    "serverURL": "https://waline-1-t8619760.deta.app/"
+    "serverURL": "https://waline-1-t8619760.deta.app/",
+    "placeholder": "留下你的航海印记…（支持兴奋的胡话与清醒的追问）"
   },
   "sponsor": {
-    "wechat": "/img/appreciation.jpg"
+    "wechat": "/img/imgappreciation.jpg",
+    "tip": "如果这些文字曾接住过你，可以请我喝杯深夜拼积木的咖啡"
   },
   "analytics": {
     "enable": false,
