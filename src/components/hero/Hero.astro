@@ -10,101 +10,34 @@ import Highlight from '@/components/Highlight.astro'
   >
     <div class="mt-[120px] lg:mt-0 max-w-[590px]">
       <h1 class="text-3xl text-center lg:text-left text-balance">
-        你好，我是 <Highlight class="font-bold">{hero.name}</Highlight> 🌊<br />
-        一个<Highlight class="font-bold">清醒的体验派信徒</Highlight>
+        Hi there, I'm <Highlight class="font-bold">{hero.name}</Highlight>🥰<br />一个<Highlight
+          class="font-bold">为理想痴狂实干</Highlight
+        >的疯子
       </h1>
-
-      <h2 class="text-1.5xl text-center lg:text-left text-balance mt-4">
-        <span class="inline-block animate-pulse">🚧</span>
-        <b>正在构建中 [ 过程本身就是抵达 ] </b>
-        <span class="text-sm text-secondary ml-2">(进度随兴奋感浮动)</span>
+      <h2 class="text-1.5xl text-center lg:text-left text-balance">
+        <br /><b>Executing the work🚧[ . . . . . . . . . . ] 0% </b>
       </h2>
-
-      <div
-        class="mt-6 p-4 rounded-lg border border-primary/30 bg-gradient-to-r from-transparent via-white/5 to-transparent dark:via-black/5"
-      >
-        <div class="text-sm text-secondary space-y-2">
-          <div class="flex items-start">
-            <span class="mt-1 mr-2">🧱</span>
-            <span><b>理性积木工坊：</b>硬件设计 · 系统架构 · 工程化思维</span>
-          </div>
-          <div class="flex items-start">
-            <span class="mt-1 mr-2">🌌</span>
-            <span><b>浪漫探索区：</b>深夜代码诗 · 未预见的bug · 计划外的星光</span>
-          </div>
-          <div class="flex items-start">
-            <span class="mt-1 mr-2">⚖️</span>
-            <span><b>核心算法：</b>兴奋感 × 策略脑 ÷ 安全线<sup>0</sup> = ∞ 可能性</span>
-          </div>
-        </div>
+      <div class="text-sm text-secondary mt-3 text-center lg:text-left">
+        🔴 硬件基础（电路设计、微机原理……）<br />🔴 计算机技术（组成、网络、系统……）<br />🔴
+        软件工程（前端、后端）<br />🔴 人工智能（深度学习……）
       </div>
-
-      <SocialList className="mt-10" client:load />
+      <SocialList className="mt-[60px]" client:load />
     </div>
-
-    <div class="mt-20 lg:mt-0 relative">
-      <div class="relative size-[200px] lg:size-[300px] group">
-        <div
-          class="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-accent/30 animate-pulse"
-          style="animation-duration: 3s;"
-        >
-        </div>
-
-        <div
-          class="size-full rounded-full overflow-hidden border-2 border-primary/50 bg-gradient-to-br from-white/10 to-black/10 dark:from-zinc-800 dark:to-zinc-900"
-        >
-          <img
-            class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
-            src={author.avatar}
-            alt="cin - 一个不设安全线的建造者"
-            loading="lazy"
-          />
-        </div>
-
-        <div
-          class="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs px-3 py-1 rounded-full bg-primary/10 border border-primary/30 opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          点击查看今日兴奋度
-        </div>
-      </div>
-
-      <div class="absolute -right-4 bottom-10 text-xs rotate-12 opacity-60 hidden lg:block">
-        <div class="animate-bounce" style="animation-duration: 5s;">
-          🪐 今日计划完成度：<span class="font-mono">随缘%</span>
-        </div>
+    <div class="mt-20 lg:mt-0">
+      <div
+        class="size-[200px] lg:size-[300px] rounded-full overflow-hidden border border-primary bg-zinc-100 dark:bg-zinc-800"
+      >
+        <img class="size-full" src={author.avatar} alt="Site owner avatar" loading="lazy" />
       </div>
     </div>
 
     <div class="mt-10 lg:mt-0 lg:absolute inset-x-0 bottom-0 flex flex-col items-center">
-      <div class="max-w-xl px-4">
-        <p class="text-sm text-center text-balance text-secondary italic">
-          “{hero.yiyan}”
-          <br />
-          <span class="text-xs mt-1 block opacity-70">—— 写于某次硬磕到深夜后的清晨</span>
-        </p>
-      </div>
-
-      <div class="mt-8 flex flex-col items-center space-y-4">
-        <div class="text-lg animate-bounce" style="animation-duration: 2s;">
-          <i class="iconfont icon-down"></i>
-        </div>
-        <div class="text-xs text-secondary animate-pulse">向下滚动，开始这场不设终点的航行</div>
+      <p class="text-xxs text-center text-balance text-secondary">
+        {hero.yiyan}
+      </p>
+      <div class="mt-7 text-xl animate-bounce">
+        <i class="iconfont icon-down"></i>
       </div>
     </div>
   </div>
 </div>
-
-<style>
-  @keyframes gentle-pulse {
-    0%,
-    100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-  .animate-pulse {
-    animation: gentle-pulse 3s ease-in-out infinite;
-  }
-</style>
