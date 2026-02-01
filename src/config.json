@@ -35,7 +35,7 @@
       {
         "name": "Email",
         "icon": "icon-mail",
-        "url": "2123277675@qq.com",
+        "url": "mailto:2123277675@qq.com",
         "color": "rgb(150, 215, 201)",
         "motto": "欢迎扔来任何“不确定的积木”"
       },
@@ -117,7 +117,7 @@
     "indexName": ""
   },
   "waline": {
-    "serverURL": "https://waline-1-t8619760.deta.app/",
+    "serverURL": "https://blogcomments-y925.vercel.app",
     "placeholder": "留下你的航海印记…（支持兴奋的胡话与清醒的追问）"
   },
   "sponsor": {
