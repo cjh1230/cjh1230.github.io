@@ -7,8 +7,6 @@ tags: [Markdown]
 draft: false
 ---
 
-## pytorch 环境配置
-
 Yolo需要pytorch环境，所以我们先做一个pytorch的环境配置
 
 **难点**
