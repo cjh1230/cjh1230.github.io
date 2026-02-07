@@ -3,7 +3,7 @@ title: pytorch 环境配置
 date: 2025-10-25
 summary: 这篇文章详细介绍了如何在Windows系统上配置PyTorch深度学习环境，包括安装Miniconda、CUDA、cuDNN以及创建PyTorch虚拟环境的完整步骤。
 category: 教程
-tags: [Markdown]
+tags: [机器学习, 视觉]
 draft: false
 ---
 
