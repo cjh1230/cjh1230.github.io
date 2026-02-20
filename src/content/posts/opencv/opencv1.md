@@ -1,13 +1,13 @@
 ---
 title: OpenCV核心算法通关指南（一）：高斯模糊 - 图像平滑去噪的数学基础
-date: 2026-02-08
+date: 2026-02-09
 summary: 从高斯函数的数学原理到OpenCV实现，深入解析高斯模糊如何通过加权平均平滑图像、抑制噪声。
 category: opencv
 tags: [OpenCV, 计算机视觉, 学习指南, 算法]
 draft: false
 ---
 
-**前言：从“朦胧美”到计算机视觉的基石**
+**从"朦胧美"到计算机视觉的基石**
 
 > 当你滑动手机相册，为某张人像照片启用“背景虚化”时；当你在影视剧中看到回忆片段特有的柔和光影时——**你已经在无意识中使用着“高斯模糊”带来的视觉魔法。**  
 > 在艺术领域，模糊可以营造氛围、引导视线。而在计算机视觉的世界里，**高斯模糊（Gaussian Blur）** 远不止于此。它是我们开启图像处理大门的第一把钥匙，是理解“噪声”、“平滑”与“尺度”等核心概念的**数学与逻辑基石**。  
@@ -264,11 +264,13 @@ for sigma in sigma_values:
 
     blurred_image = cv2.GaussianBlur(image, (kernel_size, kernel_size), sigma)
 
-    cv2.imshow(f'{kernel_size}x{kernel_size}', blurred_image)
+    cv2.imshow(f'{kernel_size}x{kernel_size},σ={sigma}', blurred_image)
     cv2.waitKey(0)
 
 cv2.destroyAllWindows()
 ```
+
+---
 
 **思考题**
 
@@ -289,4 +291,4 @@ cv2.destroyAllWindows()
 
 - 上一篇：[序章：一份给后来者的学习地图](https://cjh1230.github.io/posts/opencv0)
 - **本文：高斯模糊 - 图像平滑去噪的数学基础**
-- 下一篇：[中值滤波 - 去除椒盐噪声的鲁棒方法](你的下一篇链接)
+- 下一篇：[中值滤波 - 去除椒盐噪声的鲁棒方法](https://cjh1230.github.io/posts/opencv2)
