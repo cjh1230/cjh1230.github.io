@@ -45,6 +45,10 @@ V:     V0      V2
 
 每像素 2 字节，比 RGB 省 1/3。USB 摄像头的 YUYV、ISP 的中间输出，大多是这个。
 
+摄像头原始 YUYV 画面（640×480，614400 字节）：
+
+![摄像头 YUYV 原始帧](/images/yuv/frame.jpg)
+
 ### 4:2:0 ★
 
 水平垂直都减半。2×2 的四个像素共享一组 UV。每像素 1.5 字节，省一半。
@@ -199,6 +203,10 @@ void yuyv_to_rgb(unsigned char *yuyv, unsigned char *rgb, int w, int h)
 }
 ```
 
+转换后的 RGB 画面：
+
+![YUYV→RGB 转换结果](/images/yuv/output.jpg)
+
 ### 5.2 NV12 → RGB24
 
 这个复杂一些。Y 在第一个平面，UV 在第二个平面。2×2 的四个像素共用一组 UV，UV 偏移按 `(i/2)*w + (j/2)*2` 算：
@@ -268,9 +276,15 @@ void nv12_to_rgb(unsigned char *nv12, unsigned char *rgb, int w, int h)
 
 NV12 转 RGB 这段代码看起来重复（四像素转了四次），但这是有意为之——嵌入式上循环展开避免分支，编译器也好优化。
 
+![NV12 往返结果](/images/yuv/nv12_rt.jpg)
+
 ### 5.3 验证
 
 测试路径很简单：读入 YUYV → 转 RGB → 转回 YUYV 做往返验证；再 RGB → NV12 → RGB 看 4:2:0 降采样的损失。YUYV 往返视觉无损，NV12 往返因 4 像素 UV 平均有轻微损失，肉眼不太看得出来。
+
+YUYV 往返结果（肉眼与原始帧无区别）：
+
+![YUYV 往返结果](/images/yuv/roundtrip.jpg)
 
 用 ffplay 直接看 raw 数据确认结果：
 
