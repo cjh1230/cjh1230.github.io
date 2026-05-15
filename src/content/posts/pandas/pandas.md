@@ -2,7 +2,7 @@
 title: pandas基础语法
 date: 2026-02-18
 summary: pandas基础语法
-category: data_science
+category: pandas
 tags: [Markdown]
 draft: false
 ---
