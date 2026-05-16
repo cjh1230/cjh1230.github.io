@@ -122,23 +122,23 @@ noise_var = (double)diff_sum / (w * h - 1);
 
 ## 2. 实际输出
 
-对上一篇文章里的 640×480 室内实拍帧跑一次：
+对关掉自动白平衡和锐化后的 640×480 实拍帧跑一次：
 
 ```
 === Frame Analysis ===
 Resolution:     640x480
-Mean:           147.9
-StdDev:         55.7
-Median:         158
-Min/Max:        18 / 243
-Over-exposed:   2.59%
+Mean:           128.5
+StdDev:         52.9
+Median:         138
+Min/Max:        10 / 243
+Over-exposed:   0.01%
 Under-exposed:  0.00%
-Noise Var:      24.6
+Noise Var:      30.1
 ```
 
-Mean 147.9 正常室内亮度，略偏亮。StdDev 55.7 对比度够，画面不平淡。Median 158 跟 Mean 接近，分布对称。Min/Max 是 18/243，没死黑也没死白，动态范围被充分利用。
+Mean 128.5 正好接近 128 中性值——关掉自动处理后的画面更"均匀"，但也更灰。StdDev 52.9 对比度正常。Median 138 略高于 Mean，说明峰值偏亮。
 
-过曝 2.59%，集中在画面窗户或灯光区域。欠曝 0%，暗部细节保留得好。Noise Var 24.6 是 USB 摄像头典型水平——换成树莓派 IMX219 传感器，这个值会在 15 以下。
+过曝仅 0.01%，曝光完美。噪声方差 30.1 比之前高了——因为关了锐化，噪点没被"掩盖"。这其实更接近 ISP 真正看到的数据。
 
 ---
 
