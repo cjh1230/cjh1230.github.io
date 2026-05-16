@@ -7,7 +7,7 @@ tags: [白平衡, ISP, C语言, 嵌入式, 颜色科学]
 draft: false
 ---
 
-[上一篇](/posts/embedded/frame-analyzer) 跑通了帧分析。但定量分析和定性看是两码事——同一张图，颜色可能偏得离谱。
+跑通帧分析后，我看了一下同一个摄像头在不同光照下的表现——定量分析和定性看是两码事，同一张图，颜色可能偏得离谱。
 
 我把 USB 摄像头的 `white_balance_automatic` 设成 0，锐化也关了，拍了一帧 640×480 的 YUYV。先跑 frame_analyzer，数据看起来正常：
 
@@ -164,8 +164,6 @@ Gray World 和 White Patch 单独用都不够稳。查了现代 ISP 的文档（
 两个 40 年前的算法，改进后至今还在用。
 
 ---
-
-[上一篇](/posts/embedded/frame-analyzer)：用 C 写帧分析器。
 
 ## 参考
 

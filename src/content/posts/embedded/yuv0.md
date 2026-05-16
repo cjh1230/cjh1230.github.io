@@ -302,10 +302,6 @@ ffplay -f rawvideo -pixel_format rgb24   -video_size 640x480 nv12_rt.rgb
 
 ---
 
-[下一篇](/posts/embedded/frame-analyzer)：用 C 写帧分析器——直方图、曝光评估、噪点估计。
-
----
-
 ## 参考
 
 - 完整代码：`yuv_rgb_converter.c`

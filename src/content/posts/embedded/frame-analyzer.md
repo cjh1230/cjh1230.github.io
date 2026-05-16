@@ -7,7 +7,7 @@ tags: [直方图, 图像质量, ISP, C语言, 嵌入式]
 draft: false
 ---
 
-[上一篇](/posts/embedded/yuv0) 做完了 YUYV 到 RGB 的格式转换。拿到一帧画面后，下一步是用数据回答：**这张图质量怎么样？**
+把 YUYV 转成 RGB 之后，下一步自然是用数据回答：**这张图质量怎么样？**
 
 嵌入式上没有 OpenCV，`cv::calcHist` 和 `cv::meanStdDev` 都不存在。得自己写。
 
@@ -204,8 +204,6 @@ int main(int argc, char *argv[])
 没有 OpenCV，只依赖标准 C。树莓派上 `gcc -O2 -o frame_analyzer frame_analyzer.c -lm`，秒出结果。
 
 ---
-
-[上一篇](/posts/embedded/yuv0)：YUV 体系与定点数互转。
 
 ## 参考
 
