@@ -1,42 +1,61 @@
 <script>
-  import chroma from 'chroma-js'
+  // @ts-nocheck -- inline DOM script, not subject to TS strict mode
   import { color as themeColor } from '@/config.json'
 
-  function pickRandomAccent() {
-    const seed = (Math.random() * themeColor.accent.length) | 0
-    return themeColor.accent[seed]
+  function hexToRgb(hex) {
+    const v = parseInt(hex.slice(1), 16)
+    return [(v >> 16) & 0xff, (v >> 8) & 0xff, v & 0xff]
   }
 
-  function getRgbVal(color: chroma.Color) {
-    return color.rgb().join(' ')
+  function mixRgb(hex1, hex2, ratio) {
+    const [r1, g1, b1] = hexToRgb(hex1)
+    const [r2, g2, b2] = hexToRgb(hex2)
+    const inv = 1 - ratio
+    return [
+      Math.round(r1 * inv + r2 * ratio),
+      Math.round(g1 * inv + g2 * ratio),
+      Math.round(b1 * inv + b2 * ratio),
+    ]
   }
+
+  function rgbStr(rgb) {
+    return rgb.join(' ')
+  }
+
+  const STYLE_ID = 'accent-color-injector'
 
   function injectColor() {
-    const accentColor = pickRandomAccent()
+    const seed = (Math.random() * themeColor.accent.length) | 0
+    const accentColor = themeColor.accent[seed]
 
     const rootBgColor = {
-      light: chroma.mix('rgb(250,250,250)', accentColor.light, 0.05, 'rgb'),
-      dark: chroma.mix('rgb(0,2,18)', accentColor.dark, 0.12, 'rgb'),
+      light: mixRgb('#fafafa', accentColor.light, 0.05),
+      dark: mixRgb('#000212', accentColor.dark, 0.12),
     }
 
+    // Remove old style if exists
+    const existing = document.getElementById(STYLE_ID)
+    if (existing) existing.remove()
+
     const $style = document.createElement('style')
+    $style.id = STYLE_ID
     $style.textContent = `html {
-  --color-accent: ${getRgbVal(chroma(accentColor.light))};
-  --color-bg-root: ${getRgbVal(rootBgColor.light)};
-  --color-bg-primary: ${getRgbVal(chroma(themeColor.bg.primary.light))};
-  --color-bg-secondary: ${getRgbVal(chroma(themeColor.bg.secondary.light))};
-  --color-text-primary: ${getRgbVal(chroma(themeColor.text.primary.light))};
-  --color-text-secondary: ${getRgbVal(chroma(themeColor.text.secondary.light))};
-  --color-border-primary: ${getRgbVal(chroma(themeColor.border.primary.light))};
+  --color-accent: ${rgbStr(hexToRgb(accentColor.light))};
+  --color-bg-root: ${rgbStr(rootBgColor.light)};
+  --color-bg-primary: ${rgbStr(hexToRgb(themeColor.bg.primary.light))};
+  --color-bg-secondary: ${rgbStr(hexToRgb(themeColor.bg.secondary.light))};
+  --color-text-primary: ${rgbStr(hexToRgb(themeColor.text.primary.light))};
+  --color-text-secondary: ${rgbStr(hexToRgb(themeColor.text.secondary.light))};
+  --color-border-primary: ${rgbStr(hexToRgb(themeColor.border.primary.light))};
 }
 [data-theme='dark'] {
-  --color-accent: ${getRgbVal(chroma(accentColor.dark))};
-  --color-bg-root: ${getRgbVal(rootBgColor.dark)};
-  --color-bg-primary: ${getRgbVal(chroma(themeColor.bg.primary.dark))};
-  --color-bg-secondary: ${getRgbVal(chroma(themeColor.bg.secondary.dark))};
-  --color-text-primary: ${getRgbVal(chroma(themeColor.text.primary.dark))};
-  --color-text-secondary: ${getRgbVal(chroma(themeColor.text.secondary.dark))};
-  --color-border-primary: ${getRgbVal(chroma(themeColor.border.primary.dark))};
+  --color-accent: ${rgbStr(hexToRgb(accentColor.dark))};
+  --color-bg-root: ${rgbStr(rootBgColor.dark)};
+  --color-bg-primary: ${rgbStr(hexToRgb(themeColor.bg.primary.dark))};
+  --color-bg-secondary: ${rgbStr(hexToRgb(themeColor.bg.secondary.dark))};
+  --color-text-primary: ${rgbStr(hexToRgb(themeColor.text.primary.dark))};
+  --color-text-secondary: ${rgbStr(hexToRgb(themeColor.text.secondary.dark))};
+  --color-border-primary: ${rgbStr(hexToRgb(themeColor.border.primary.dark))};
 }`
     document.head.appendChild($style)
   }

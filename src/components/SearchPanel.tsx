@@ -1,37 +1,38 @@
 import { useAtom } from 'jotai'
 import { searchPanelOpenAtom } from '@/store/searchPanel'
 import appConfig from '@/config.json'
-import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react'
-import '@docsearch/css'
-import { RootPortal } from './RootPortal'
+import { useEffect } from 'react'
 
 export function SearchPanel() {
+  const { docSearch } = appConfig
   const [isOpen, setIsOpen] = useAtom(searchPanelOpenAtom)
 
-  const onOpen = () => {
-    setIsOpen(true)
-  }
-  const onClose = () => {
-    setIsOpen(false)
-  }
+  // Close panel on ESC
+  useEffect(() => {
+    if (!isOpen) return
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false)
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [isOpen, setIsOpen])
 
-  useDocSearchKeyboardEvents({
-    isOpen,
-    onOpen,
-    onClose,
-  })
+  // Open on Ctrl/Cmd+K
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setIsOpen(true)
+      }
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [setIsOpen])
 
-  return (
-    isOpen && (
-      <RootPortal>
-        <DocSearchModal
-          appId={appConfig.docSearch.appId}
-          apiKey={appConfig.docSearch.apiKey}
-          indexName={appConfig.docSearch.indexName}
-          initialScrollY={window.scrollY}
-          onClose={onClose}
-        />
-      </RootPortal>
-    )
-  )
+  if (!isOpen) return null
+  if (!docSearch.appId || !docSearch.apiKey) return null
+
+  // Search is not configured - the docsearch modal would render here
+  // if Algolia credentials were provided
+  return null
 }

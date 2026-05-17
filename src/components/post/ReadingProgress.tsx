@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useAtomValue } from 'jotai'
 import { pageScrollLocationAtom } from '@/store/scrollInfo'
-import { floor } from 'lodash-es'
 
 export function ReadingProgress() {
   const [percent, setPercent] = useState(0)
   const scrollY = useAtomValue(pageScrollLocationAtom)
+  const articleRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    const $article = document.querySelector('#markdown-wrapper')
-    if (!$article) return
+    if (!articleRef.current) {
+      articleRef.current = document.querySelector('#markdown-wrapper')
+    }
+    if (!articleRef.current) return
 
-    const { offsetHeight, offsetTop } = $article as HTMLElement
+    const { offsetHeight, offsetTop } = articleRef.current
     const fullHeight = offsetHeight + offsetTop - window.innerHeight
 
     if (scrollY > fullHeight) {
       setPercent(100)
     } else {
-      setPercent(floor((scrollY / fullHeight) * 100))
+      setPercent(Math.floor((scrollY / fullHeight) * 100))
     }
   }, [scrollY])
 

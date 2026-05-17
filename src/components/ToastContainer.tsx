@@ -1,14 +1,20 @@
-import { ToastContainer as ReactToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { useAtomValue } from 'jotai'
+import { toastsAtom } from '@/store/toast'
 
 export function ToastContainer() {
-  return <ReactToastContainer position='bottom-right' autoClose={3000} hideProgressBar closeButton={CloseButton}
-    toastClassName="!bg-primary !text-primary text-sm border border-primary"
-  />
-}
+  const toasts = useAtomValue(toastsAtom)
+  if (toasts.length === 0) return null
 
-function CloseButton({ closeToast }: { closeToast: (event: React.MouseEvent<HTMLElement>) => void }) {
-  return <button type="button" aria-label='Close Toast' className='text-lg opacity-50 hover:opacity-100' onClick={closeToast}>
-    <i className='iconfont icon-close'></i>
-  </button>
+  return (
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
+      {toasts.map((toast) => (
+        <div
+          key={toast.id}
+          className="bg-primary text-primary text-sm border border-primary rounded-lg px-4 py-2 shadow-lg"
+        >
+          {toast.message}
+        </div>
+      ))}
+    </div>
+  )
 }

@@ -4,7 +4,7 @@ import * as QR from 'qrcode.react'
 import { useAtomValue } from 'jotai'
 import { metaSlugAtom, metaTitleAtom } from '@/store/metaInfo'
 import clsx from 'clsx'
-import { toast } from 'react-toastify'
+import { showToast } from '@/store/toast'
 import { useModal } from '@/components/ui/modal'
 
 interface ShareData {
@@ -27,7 +27,7 @@ const shareList = [
     icon: 'icon-link',
     onClick: (data: ShareData) => {
       navigator.clipboard.writeText(data.url)
-      toast.success('已复制到剪贴板')
+      showToast('已复制到剪贴板')
     },
   },
 ]
