@@ -2,7 +2,7 @@
   stroke-dasharray: 2400;
   stroke-dashoffset: 2400;
   fill: transparent;
-  animation: drawSignature 8s linear infinite both;
+  animation: drawSignature 8s linear forwards both;
   stroke-width: 2px;
   stroke: theme('textColor.primary');
 }

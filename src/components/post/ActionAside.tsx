@@ -1,6 +1,5 @@
 import { sponsor, site } from '@/config.json'
 import { motion } from 'framer-motion'
-import * as QR from 'qrcode.react'
 import { useAtomValue } from 'jotai'
 import { metaSlugAtom, metaTitleAtom } from '@/store/metaInfo'
 import clsx from 'clsx'
@@ -83,7 +82,13 @@ function ShareModal({ url, text }: { url: string; text: string }) {
       <h2 className="px-3 py-1 font-bold">分享此内容</h2>
       <hr className="my-2 border-primary" />
       <div className="px-3 py-2 grid grid-cols-[180px_auto] gap-3">
-        <QR.QRCodeSVG value={url} size={180} />
+        <img
+          src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}`}
+          alt="QR code for this post"
+          width={180}
+          height={180}
+          loading="lazy"
+        />
         <div className="flex flex-col gap-2">
           <div className="text-sm">分享到...</div>
           <ul className="flex flex-col gap-2">

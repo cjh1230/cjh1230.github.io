@@ -1,12 +1,15 @@
 import { getCollection } from 'astro:content'
 
-// 获取所有文章
-async function getAllPosts() {
-  const allPosts = await getCollection('posts', ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true
-  })
+let _cachedPosts: ReturnType<typeof getCollection<'posts'>> | null = null
 
-  return allPosts
+// 获取所有文章（构建时缓存，避免重复查询）
+async function getAllPosts() {
+  if (!_cachedPosts) {
+    _cachedPosts = getCollection('posts', ({ data }) => {
+      return import.meta.env.PROD ? data.draft !== true : true
+    })
+  }
+  return _cachedPosts
 }
 
 // 获取所有文章，发布日期升序
