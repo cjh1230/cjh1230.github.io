@@ -27,7 +27,7 @@ avgB = 122.3
 
 G 通道碾压 R 和 B。画面偏绿，但直方图和标准差完全看不出来。这就是没有白平衡的原始数据。
 
-![关掉 AWB 的原始帧](/images/yuv/frame.png)
+![关掉 AWB 的原始帧](/images/yuv/original.png)
 
 ---
 
@@ -78,7 +78,7 @@ avgB = 164.6
 
 R 从 108 拉到 163，三个值接近了。绿色溢出的画面被拉回中性。
 
-![Gray World 校正结果](/images/yuv/corrected_gw.png)
+![Gray World 校正结果](/images/yuv/gray_world.png)
 
 这个算法 1980 年就提出了。它的盲区也很明显：如果画面本身就偏色（大草坪、日落），全局平均不是灰的——它会误校正，把日落拉成白天的颜色。
 
@@ -133,7 +133,7 @@ for (int i = 0; i < pixels * 3; i += 3) {
 
 混合增益 `gainR=1.3074, gainB=1.2156`，介于 GW 的激进和 WP 的保守之间。
 
-![混合校正结果](/images/yuv/corrected_mix.png)
+![混合校正结果](/images/yuv/mixed_wb.png)
 
 ---
 
