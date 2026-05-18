@@ -21,7 +21,6 @@ function buildImage(node) {
     ...node.properties,
     loading: 'lazy',
     decoding: 'async',
-    'data-zoomable': '',
   })
 }
 
