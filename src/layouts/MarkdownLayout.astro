@@ -33,7 +33,7 @@ const { title, description, image, mdTitle, mdDescription, mdSlug } = Astro.prop
 
   <Header client:only="react" transition:persist="header" />
   <main class="relative z-1 pt-16 min-h-main bg-primary">
-    <HeadGradient client:idle />
+    <HeadGradient />
     <slot />
   </main>
   <Footer />

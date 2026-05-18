@@ -1,6 +1,6 @@
 ---
 import { hero, author } from '@/config.json'
-import { SocialList } from './SocialList'
+import SocialList from './SocialList.astro'
 import Highlight from '@/components/Highlight.astro'
 ---
 
@@ -39,7 +39,7 @@ import Highlight from '@/components/Highlight.astro'
         </div>
       </div>
 
-      <SocialList className="mt-10" client:load />
+      <SocialList className="mt-10" />
     </div>
 
     <!-- 右栏：头像与动态效果 -->

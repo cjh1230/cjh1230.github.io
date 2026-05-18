@@ -1,8 +1,7 @@
 import { author, site } from '@/config.json'
 import { getFormattedDateTime } from '@/utils/date'
-import { AnimatedSignature } from '../AnimatedSignature'
-import { useEffect, useState } from 'react'
 import { showToast } from '@/store/toast'
+import SvgContent from '@/assets/signature.svg?raw'
 
 function getPostUrl(slug: string) {
   return new URL(slug, site.url).href
@@ -17,17 +16,12 @@ export function PostCopyright({
   slug: string
   lastMod: Date
 }) {
-  const [lastModStr, setLastModStr] = useState('')
   const url = getPostUrl(slug)
 
   function handleCopyUrl() {
     navigator.clipboard.writeText(url)
     showToast('已复制文章链接')
   }
-
-  useEffect(() => {
-    setLastModStr(getFormattedDateTime(lastMod))
-  }, [lastMod])
 
   return (
     <section className="text-xs leading-loose text-secondary">
@@ -39,11 +33,11 @@ export function PostCopyright({
           [复制]
         </span>
       </p>
-      <p>最后修改时间：{lastModStr}</p>
+      <p>最后修改时间：{getFormattedDateTime(lastMod)}</p>
       <hr className="my-3 border-primary" />
       <div>
         <div className="float-right ml-4 my-2">
-          <AnimatedSignature />
+          <div className="animated-signature" dangerouslySetInnerHTML={{ __html: SvgContent }}></div>
         </div>
         <p>
           商业转载请联系站长获得授权，非商业转载请注明本文出处及文章链接，您可以自由地在任何媒体以任何形式复制和分发作品，也可以修改和创作，但是分发衍生作品时必须采用相同的许可协议。
@@ -63,3 +57,4 @@ export function PostCopyright({
     </section>
   )
 }
+

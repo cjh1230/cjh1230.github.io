@@ -1,0 +1,13 @@
+---
+import { getRelativeTime, getFormattedDate } from '@/utils/date'
+
+interface Props {
+  date: Date
+}
+
+const { date } = Astro.props
+const relative = getRelativeTime(date)
+const display = relative || getFormattedDate(date)
+---
+
+<span>{display}</span>

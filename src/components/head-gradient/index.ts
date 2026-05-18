@@ -1,1 +1,1 @@
-export { HeadGradient } from './HeadGradient'
+export { default as HeadGradient } from './HeadGradient.astro'

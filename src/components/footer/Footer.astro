@@ -2,7 +2,7 @@
 import { ThemeSwitch } from './ThemeSwitch'
 import { author, footer } from '@/config.json'
 import { getAllPostsWordCount } from '@/utils/content'
-import { RunningDays } from './RunningDays'
+import RunningDays from './RunningDays.astro'
 import Link from './Link.astro'
 
 const sinceYear = new Date(footer.startTime).getFullYear()
@@ -34,7 +34,7 @@ const wordCountStr = (wordCount / 1000).toFixed(1) + 'k'
       </Link>
     </div>
     <div>
-      <RunningDays client:only="react" />
+      <RunningDays />
       <span class="select-none opacity-50">|</span>
       <span>共嘚嘚了 {wordCountStr} 字</span>
     </div>

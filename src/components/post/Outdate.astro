@@ -1,0 +1,29 @@
+---
+import { getDiffInDays, getFormattedDate } from '@/utils/date'
+
+interface Props {
+  lastMod: Date
+}
+
+const { lastMod } = Astro.props
+const isOutdated = getDiffInDays(lastMod) > 30
+---
+
+{isOutdated && (
+  <div class="flex justify-center text-sm p-4 rounded-lg bg-amber-300/10 border border-amber-300 animate-fade-in">
+    <span>
+      这篇文章最后修改于 {getFormattedDate(lastMod)}
+      ，部分内容可能已经不适用，如有疑问可联系作者。
+    </span>
+  </div>
+)}
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+</style>
