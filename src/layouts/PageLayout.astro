@@ -6,6 +6,7 @@ import { SearchPanel } from '@/components/SearchPanel'
 import { Provider } from '@/components/provider/Provider'
 import { ToastContainer } from '@/components/ToastContainer'
 import { ModalStack } from '@/components/ui/modal'
+import ImageZoom from '@/components/ImageZoom.astro'
 
 interface Props {
   title?: string
@@ -26,4 +27,5 @@ const { title, description, image } = Astro.props
   <SearchPanel client:only="react" />
   <ToastContainer client:only="react" />
   <ModalStack client:only="react" />
+  <ImageZoom />
 </Layout>

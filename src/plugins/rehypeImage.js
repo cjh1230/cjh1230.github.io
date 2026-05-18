@@ -17,12 +17,16 @@ export function rehypeImage() {
 }
 
 function buildImage(node) {
-  const imgProps = node.properties
-
-  return h('img', { ...imgProps, loading: 'lazy' })
+  return h('img', {
+    ...node.properties,
+    loading: 'lazy',
+    decoding: 'async',
+    'data-zoomable': '',
+  })
 }
 
 function buildFigure(node) {
+  const imgProps = node.properties
   let imgTitle = node.properties.title
   if (imgTitle) {
     imgTitle = imgTitle.trim()

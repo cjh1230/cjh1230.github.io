@@ -8,6 +8,7 @@ import { BackToTopFAB } from '@/components/BackToTopFAB'
 import { Provider } from '@/components/provider/Provider'
 import { ToastContainer } from '@/components/ToastContainer'
 import { ModalStack } from '@/components/ui/modal'
+import ImageZoom from '@/components/ImageZoom.astro'
 import 'katex/dist/katex.min.css'
 
 interface Props {
@@ -42,4 +43,5 @@ const { title, description, image, mdTitle, mdDescription, mdSlug } = Astro.prop
   <SearchPanel client:only="react" />
   <ToastContainer client:only="react" />
   <ModalStack client:only="react" />
+  <ImageZoom />
 </Layout>

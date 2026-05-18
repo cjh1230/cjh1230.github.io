@@ -88,11 +88,24 @@
 }
 
 .markdown img {
-  @apply rounded-lg bg-secondary min-h-[80px] min-w-[80px];
+  @apply rounded-xl bg-secondary min-h-[80px] min-w-[80px] shadow-md;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: zoom-in;
+}
+
+.markdown img:hover {
+  transform: scale(1.02);
+  @apply shadow-lg;
 }
 
 .markdown figure {
   @apply mb-5 flex flex-col items-center;
+}
+
+.markdown figure img {
+  @apply mb-0;
 }
 
 .markdown figcaption {
