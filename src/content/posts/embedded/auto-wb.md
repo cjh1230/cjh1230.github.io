@@ -167,7 +167,6 @@ Gray World 和 White Patch 单独用都不够稳。查了现代 ISP 的文档（
 
 ## 参考
 
-- 完整代码：`auto_wb.c`
 - Gray World: Buchsbaum, 1980
 - White Patch / Retinex: Land, 1971
 

@@ -207,7 +207,6 @@ int main(int argc, char *argv[])
 
 ## 参考
 
-- 完整代码：`frame_analyzer.c`
 - ISO 15739：噪声测量标准
 - 树莓派 V4L2 文档：Linux Media Infrastructure API
 
