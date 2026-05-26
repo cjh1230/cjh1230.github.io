@@ -307,3 +307,5 @@ ffplay -f rawvideo -pixel_format rgb24   -video_size 640x480 nv12_rt.rgb
 - 完整代码：`yuv_rgb_converter.c`
 - BT.601 标准：ITU-R BT.601-7
 - 树莓派 V4L2 文档：Linux Media Infrastructure API
+
+完整代码：[github.com/cjh1230/learn-embedded-linux-video](https://github.com/cjh1230/learn-embedded-linux-video)

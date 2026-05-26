@@ -147,4 +147,4 @@ save_result(yuyv);
 
 ---
 
-完整代码见仓库。
+完整代码：[github.com/cjh1230/learn-embedded-linux-video](https://github.com/cjh1230/learn-embedded-linux-video)
