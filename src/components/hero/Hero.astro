@@ -9,11 +9,17 @@ import Highlight from '@/components/Highlight.astro'
     class="relative max-w-[1300px] mx-auto h-full px-4 grid lg:grid-cols-2 items-center justify-items-center"
   >
     <div class="mt-[120px] lg:mt-0 max-w-[590px]">
-      <h1 class="text-3xl text-center lg:text-left text-balance animate-slide-in-left" style="--delay: 100ms">
+      <h1
+        class="text-3xl text-center lg:text-left text-balance animate-slide-in-left"
+        style="--delay: 100ms"
+      >
         你好，我是 <Highlight class="font-bold">{hero.name}</Highlight>
       </h1>
 
-      <p class="text-1.5xl text-center lg:text-left text-balance mt-4 text-secondary animate-slide-in-left" style="--delay: 250ms">
+      <p
+        class="text-1.5xl text-center lg:text-left text-balance mt-4 text-secondary animate-slide-in-left"
+        style="--delay: 250ms"
+      >
         {hero.description}
       </p>
 
@@ -52,8 +58,12 @@ import Highlight from '@/components/Highlight.astro'
 <style>
   @keyframes gentle-pulse {
     0%,
-    100% { opacity: 0.6; }
-    50% { opacity: 1; }
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
   }
   .animate-pulse {
     animation: gentle-pulse 3s ease-in-out infinite;
