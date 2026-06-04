@@ -16,7 +16,7 @@ export function ReadingProgress() {
     const { offsetHeight, offsetTop } = articleRef.current
     const fullHeight = offsetHeight + offsetTop - window.innerHeight
 
-    if (scrollY > fullHeight) {
+    if (fullHeight <= 0 || scrollY > fullHeight) {
       setPercent(100)
     } else {
       setPercent(Math.floor((scrollY / fullHeight) * 100))
@@ -24,8 +24,14 @@ export function ReadingProgress() {
   }, [scrollY])
 
   return (
-    <div>
-      <span className="text-sm">进度 {percent}%</span>
+    <div className="flex items-center gap-2">
+      <div className="h-1.5 w-24 rounded-full bg-primary/15 overflow-hidden">
+        <div
+          className="h-full rounded-full bg-accent transition-[width] duration-150"
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+      <span className="text-sm tabular-nums">{percent}%</span>
     </div>
   )
 }

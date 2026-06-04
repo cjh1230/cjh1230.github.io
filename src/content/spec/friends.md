@@ -1,5 +1,5 @@
 ---
-title: 同航者
+title: 友链
 description: 我的小伙伴们和一些有趣的站点。
 comments: true
 ---

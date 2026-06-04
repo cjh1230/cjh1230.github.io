@@ -12,9 +12,9 @@ const { posts } = Astro.props
 <div>
   <ul class="-my-4">
     {
-      posts.map((post) => (
+      posts.map((post, i) => (
         <li>
-          <PostCard entry={post} />
+          <PostCard entry={post} index={i} />
         </li>
       ))
     }

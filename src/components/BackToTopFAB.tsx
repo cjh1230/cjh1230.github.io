@@ -30,6 +30,7 @@ function BackToTop() {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 22 }}
     >
       <i className="iconfont icon-rocket"></i>
     </motion.button>

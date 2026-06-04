@@ -39,8 +39,8 @@ const groupedPosts = posts.reduce<
           {year.year}
         </h3>
         <ul class="space-y-4">
-          {year.posts.map((post) => (
-            <li class="flex items-baseline space-x-2">
+          {year.posts.map((post, i) => (
+            <li class="flex items-baseline space-x-2 animate-stagger-fade-up" style={`--i: ${i}`}>
               <span class="shrink-0 text-gray-600 dark:text-gray-300 text-sm">
                 {getShortDate(post.data.date)}
               </span>

@@ -6,10 +6,10 @@ const projects = await getCollection('projects')
 
 <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
   {
-    projects.map((project) => (
-      <li>
+    projects.map((project, i) => (
+      <li class="animate-stagger-fade-up" style={`--i: ${i}`}>
         <a href={project.data.link} target="_blank" rel="noopener noreferrer external">
-          <div class="rounded-lg bg-accent/10 overflow-hidden group">
+          <div class="rounded-lg bg-accent/10 overflow-hidden group animate-hover-spring">
             <div class="aspect-video overflow-hidden">
               <img
                 class="size-full object-cover transition-transform group-hover:scale-110"

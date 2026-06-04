@@ -2,6 +2,7 @@
 @import './shiki.css';
 @import './markdown.css';
 @import './signature.css';
+@import './animations.css';
 
 @font-face {
   font-family: 'Atkinson';

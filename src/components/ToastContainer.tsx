@@ -10,7 +10,7 @@ export function ToastContainer() {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="bg-primary text-primary text-sm border border-primary rounded-lg px-4 py-2 shadow-lg"
+          className="bg-primary text-primary text-sm border border-primary rounded-lg px-4 py-2 shadow-lg animate-popup-spring"
         >
           {toast.message}
         </div>

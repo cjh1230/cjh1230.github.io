@@ -14,8 +14,8 @@ const { prev, next, class: className } = Astro.props
   <div>
     {
       prev && (
-        <a class="flex items-baseline gap-2 hover:text-accent" href={`/posts/${prev.slug}`}>
-          <i class="iconfont icon-arrow-left" />
+        <a class="flex items-baseline gap-2 hover:text-accent group" href={`/posts/${prev.slug}`}>
+          <i class="iconfont icon-arrow-left transition-transform group-hover:-translate-x-1" />
           <span>{prev.data.title}</span>
         </a>
       )
@@ -25,11 +25,11 @@ const { prev, next, class: className } = Astro.props
     {
       next && (
         <a
-          class="flex items-baseline justify-end gap-2 hover:text-accent"
+          class="flex items-baseline justify-end gap-2 hover:text-accent group"
           href={`/posts/${next.slug}`}
         >
           <span>{next.data.title}</span>
-          <i class="iconfont icon-arrow-right" />
+          <i class="iconfont icon-arrow-right transition-transform group-hover:translate-x-1" />
         </a>
       )
     }

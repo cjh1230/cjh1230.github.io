@@ -1,7 +1,7 @@
 ---
 title: Markdown 示例
 date: 2024-04-01
-summary: 这是一篇 Markdown 文章的示例。展示了 Markdown 的语法和渲染效果。
+summary: Astro 中 Markdown 常用语法示例。
 category: tools
 tags: [Markdown]
 draft: false

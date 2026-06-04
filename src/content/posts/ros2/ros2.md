@@ -1,7 +1,7 @@
 ---
 title: ros2常见问题
 date: 2024-04-01
-summary: 这是一篇 Markdown 文章的示例。展示了 Markdown 的语法和渲染效果。
+summary: ROS 2 开发中遇到的常见问题及解决方案。
 category: ros2
 tags: [Markdown]
 draft: true

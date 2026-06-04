@@ -20,7 +20,7 @@ const { title, description, image } = Astro.props
 ---
 
 <!doctype html>
-<html lang={site.lang} transition:animate="none">
+<html lang={site.lang} transition:animate="fade">
   <head>
     <CommonHead title={title} description={description} image={image} />
     <WebAnalytics />
@@ -32,6 +32,77 @@ const { title, description, image } = Astro.props
     <PrintVersion />
   </head>
   <body>
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
     <slot />
+    <script>
+      // --- Scroll reveal (IntersectionObserver) ---
+      const prevRevealHandler = window.__revealHandler
+      if (prevRevealHandler) {
+        document.removeEventListener('astro:page-load', prevRevealHandler)
+      }
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed')
+              revealObserver.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+      )
+      window.__revealHandler = () => {
+        document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
+      }
+      document.addEventListener('astro:page-load', window.__revealHandler)
+      window.__revealHandler()
+
+      // --- Scroll progress bar ---
+      const prevProgress = window.__scrollProgressHandler
+      if (prevProgress) {
+        window.removeEventListener('scroll', prevProgress)
+        document.removeEventListener('astro:page-load', prevProgress)
+      }
+      let raf = 0
+      window.__scrollProgressHandler = function updateScrollProgress() {
+        const bar = document.getElementById('scroll-progress')
+        if (!bar) return
+        cancelAnimationFrame(raf)
+        raf = requestAnimationFrame(() => {
+          const h = document.documentElement
+          const scrollHeight = h.scrollHeight
+          const clientHeight = h.clientHeight
+          if (scrollHeight <= clientHeight) {
+            bar.style.transform = 'scaleX(0)'
+            return
+          }
+          bar.style.transform = `scaleX(${h.scrollTop / (scrollHeight - clientHeight)})`
+        })
+      }
+      // Suppress initial transition so bar snaps to position, not animates from 0
+      const progressBar = document.getElementById('scroll-progress')
+      if (progressBar) {
+        progressBar.style.transition = 'none'
+        window.__scrollProgressHandler()
+        requestAnimationFrame(() => {
+          progressBar.style.transition = ''
+        })
+      }
+      window.addEventListener('scroll', window.__scrollProgressHandler, { passive: true })
+      document.addEventListener('astro:page-load', window.__scrollProgressHandler)
+
+      // --- Pause infinite animations when tab hidden ---
+      const prevVis = window.__visHandler
+      if (prevVis) {
+        document.removeEventListener('visibilitychange', prevVis)
+      }
+      window.__visHandler = () => {
+        document.documentElement.style.setProperty(
+          '--anim-state',
+          document.hidden ? 'paused' : 'running',
+        )
+      }
+      document.addEventListener('visibilitychange', window.__visHandler)
+    </script>
   </body>
 </html>

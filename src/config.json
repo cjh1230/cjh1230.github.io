@@ -1,9 +1,9 @@
 {
   "site": {
     "url": "https://cjh1230.github.io",
-    "title": "崖岸笔记",
-    "description": "一个清醒的体验派信徒在过程与跳跃之间写下的航海日志",
-    "keywords": "cin,清醒的浪漫主义,过程即意义,探险家日记,建造与跳跃",
+    "title": "cin",
+    "description": "嵌入式、计算机视觉与机器人的技术笔记",
+    "keywords": "cin,嵌入式,计算机视觉,opencv,pytorch,ros2,fpga,stm32",
     "lang": "zh-CN",
     "favicon": "/favicon.ico",
     "appleTouchIcon": "/apple-touch-icon.png"
@@ -15,39 +15,34 @@
   },
   "hero": {
     "name": "cin",
-    "bio": "带着计算器的诗人 · 清醒的纵身一跃者",
-    "description": "相信悬崖下是海，也相信过程本身即是抵达。理想是成为像稚晖君那样用工程浪漫主义解构世界的人。",
+    "bio": "嵌入式系统开发者",
+    "description": "记录嵌入式、计算机视觉和机器人开发中的实践与思考。",
     "socials": [
       {
         "name": "Github",
         "icon": "icon-github",
         "url": "https://github.com/cjh1230",
-        "color": "rgb(239, 70, 107)",
-        "motto": "这里存放理性构建的乐高"
+        "color": "rgb(239, 70, 107)"
       },
       {
         "name": "bilibili",
         "icon": "icon-bilibili",
         "url": "https://space.bilibili.com/1592337652",
-        "color": "rgb(245, 154, 155)",
-        "motto": "偶尔让兴奋感带路的地方"
+        "color": "rgb(245, 154, 155)"
       },
       {
         "name": "Email",
         "icon": "icon-mail",
         "url": "mailto:2123277675@qq.com",
-        "color": "rgb(150, 215, 201)",
-        "motto": "欢迎扔来任何“不确定的积木”"
+        "color": "rgb(150, 215, 201)"
       },
       {
         "name": "Zhihu",
         "icon": "icon-zhihu",
         "url": "https://www.zhihu.com/people/74-56-28-6-18",
-        "color": "rgb(42, 147, 213)",
-        "motto": "策略脑与兴奋感对话的现场"
+        "color": "rgb(42, 147, 213)"
       }
-    ],
-    "yiyan": "我不设安全线，但相信过程会接住我。"
+    ]
   },
   "color": {
     "accent": [
@@ -74,42 +69,36 @@
   },
   "menus": [
     {
-      "name": "崖岸日志",
+      "name": "首页",
       "link": "/",
-      "icon": "icon-pantone",
-      "hint": "跳跃前的深呼吸"
+      "icon": "icon-pantone"
     },
     {
-      "name": "航海图集",
+      "name": "归档",
       "link": "/archives",
-      "icon": "icon-archive",
-      "hint": "所有抵达都是过程"
+      "icon": "icon-archive"
     },
     {
-      "name": "积木工坊",
+      "name": "项目",
       "link": "/projects",
-      "icon": "icon-flask",
-      "hint": "理性与浪漫的焊接点"
+      "icon": "icon-flask"
     },
     {
-      "name": "关于我",
+      "name": "关于",
       "link": "/about",
-      "icon": "icon-ghost",
-      "hint": "一个不设防的建造者"
+      "icon": "icon-ghost"
     },
     {
-      "name": "同航者",
+      "name": "友链",
       "link": "/friends",
-      "icon": "icon-hearts",
-      "hint": "共享海图的人"
+      "icon": "icon-hearts"
     }
   ],
   "posts": {
     "perPage": 5
   },
   "footer": {
-    "startTime": "2026-02-01T00:00:00Z",
-    "quote": "凡我所遇，皆成惊喜——哪怕只是学会了如何坠落"
+    "startTime": "2026-02-01T00:00:00Z"
   },
   "docSearch": {
     "appId": "",
@@ -118,11 +107,11 @@
   },
   "waline": {
     "serverURL": "https://blogcomments-y925.vercel.app",
-    "placeholder": "留下你的航海印记…（支持兴奋的胡话与清醒的追问）"
+    "placeholder": "说点什么…"
   },
   "sponsor": {
     "wechat": "/img/赞赏码.jpg",
-    "tip": "如果这些文字曾接住过你，可以请我喝杯深夜拼积木的咖啡"
+    "tip": "如果这些内容对你有帮助，可以请我喝杯咖啡"
   },
   "analytics": {
     "enable": false,
