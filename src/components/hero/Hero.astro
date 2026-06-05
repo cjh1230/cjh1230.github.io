@@ -1,7 +1,6 @@
 ---
 import { hero, author } from '@/config.json'
 import SocialList from './SocialList.astro'
-import Highlight from '@/components/Highlight.astro'
 ---
 
 <div class="lg:-mt-16 lg:h-dvh lg:min-h-[720px]">
@@ -9,18 +8,14 @@ import Highlight from '@/components/Highlight.astro'
     class="relative max-w-[1300px] mx-auto h-full px-4 grid lg:grid-cols-2 items-center justify-items-center"
   >
     <div class="mt-[120px] lg:mt-0 max-w-[590px]">
-      <h1
-        class="text-3xl text-center lg:text-left text-balance animate-slide-in-left"
-        style="--delay: 100ms"
-      >
-        你好，我是 <Highlight class="font-bold">{hero.name}</Highlight>
+      <h1 class="text-5xl font-bold text-center lg:text-left char-bounce">
+        <span>c</span><span>i</span><span>n</span>
       </h1>
-
-      <p
-        class="text-1.5xl text-center lg:text-left text-balance mt-4 text-secondary animate-slide-in-left"
-        style="--delay: 250ms"
-      >
-        {hero.description}
+      <p class="text-xl text-center lg:text-left text-secondary mt-4 animate-fade-slide-up" style="--delay: 800ms">
+        让机器看见世界。
+      </p>
+      <p class="text-sm text-center lg:text-left text-secondary/60 mt-3 animate-fade-slide-up" style="--delay: 1000ms">
+        嵌入式 / CV / 机器人
       </p>
 
       <SocialList className="mt-10" />
@@ -58,14 +53,29 @@ import Highlight from '@/components/Highlight.astro'
 <style>
   @keyframes gentle-pulse {
     0%,
-    100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
+    100% { opacity: 0.6; }
+    50% { opacity: 1; }
   }
   .animate-pulse {
     animation: gentle-pulse 3s ease-in-out infinite;
+  }
+
+  .char-bounce span {
+    display: inline-block;
+    opacity: 0;
+    animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .char-bounce span:nth-child(1) { animation-delay: 0.3s; }
+  .char-bounce span:nth-child(2) { animation-delay: 0.45s; }
+  .char-bounce span:nth-child(3) { animation-delay: 0.6s; }
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.6em) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 </style>
