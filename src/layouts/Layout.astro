@@ -41,6 +41,7 @@ const { title, description, image } = Astro.props
     <div class="scroll-progress-bar" id="scroll-progress"></div>
     <slot />
     <script>
+      // @ts-nocheck -- inline DOM script, custom window properties
       // --- Scroll reveal (IntersectionObserver) ---
       const prevRevealHandler = window.__revealHandler
       if (prevRevealHandler) {
