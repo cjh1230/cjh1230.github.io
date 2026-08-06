@@ -869,19 +869,19 @@ In `src/layouts/MarkdownLayout.astro`:
 1. Remove the static `import 'katex/dist/katex.min.css'` line.
 2. Add to the `Props` interface: `hasMath?: boolean`
 3. Destructure `hasMath = false` from `Astro.props`.
-4. Add frontmatter:
+4. Replace the removed import with a static `?url` import (asset is emitted once, but only _referenced_ on math pages):
 
 ```astro
-let katexCssUrl: string | undefined if (hasMath) {
-  (katexCssUrl = (await import('katex/dist/katex.min.css?url')).default)
-}
+import katexCss from 'katex/dist/katex.min.css?url'
 ```
 
 5. In the `<Layout>` opening, add the conditional stylesheet link:
 
 ```astro
-{katexCssUrl && <link rel="stylesheet" href={katexCssUrl} is:inline />}
+{hasMath && <link rel="stylesheet" href={katexCss} is:inline />}
 ```
+
+6. Ensure `?url` is typed: in `src/env.d.ts`, append `/// <reference types="vite/client" />` if `astro/client` does not already provide it (verify with `pnpm build`; if the `?url` import type-errors, add the reference).
 
 - [ ] **Step 3: Verify katex CSS is absent on non-math pages**
 
