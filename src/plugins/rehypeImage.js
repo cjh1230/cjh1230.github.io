@@ -1,5 +1,21 @@
 import { h } from 'hastscript'
 import { visit } from 'unist-util-visit'
+import { imageSize } from 'image-size'
+import path from 'node:path'
+import fs from 'node:fs'
+
+export function resolveImageSize(filePath) {
+  try {
+    if (fs.existsSync(filePath)) {
+      // image-size v2 takes a Buffer/Uint8Array, not a file path (v1 API)
+      const { width, height } = imageSize(fs.readFileSync(filePath))
+      if (width && height) return { width, height }
+    }
+  } catch {
+    // ignore unreadable / unsupported images
+  }
+  return {}
+}
 
 export function rehypeImage() {
   return function (tree) {
@@ -17,11 +33,15 @@ export function rehypeImage() {
 }
 
 function buildImage(node) {
-  return h('img', {
-    ...node.properties,
-    loading: 'lazy',
-    decoding: 'async',
-  })
+  const props = { ...node.properties, loading: 'lazy', decoding: 'async' }
+  const src = node.properties.src
+  if (typeof src === 'string' && src.startsWith('/')) {
+    const filePath = path.join(process.cwd(), 'public', src)
+    const size = resolveImageSize(filePath)
+    if (size.width) props.width = size.width
+    if (size.height) props.height = size.height
+  }
+  return h('img', props)
 }
 
 function buildFigure(node) {
@@ -30,6 +50,5 @@ function buildFigure(node) {
   if (imgTitle) {
     imgTitle = imgTitle.trim()
   }
-
   return h('figure', null, [buildImage(node), imgTitle ? h('figcaption', imgTitle) : null])
 }
