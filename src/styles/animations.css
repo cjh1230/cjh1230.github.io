@@ -316,6 +316,7 @@
   transition:
     opacity 0.6s ease-out,
     transform 0.6s ease-out;
+  transition-delay: calc(var(--i, 0) * 80ms);
 }
 .reveal.revealed {
   opacity: 1;
