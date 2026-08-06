@@ -38,6 +38,8 @@ const { current, prev, next } = Astro.props
 
 const { headings, Content, remarkPluginFrontmatter } = await current.render()
 
+const hasMath = /(?<!\\)\$/u.test(current.body ?? '')
+
 const mdSlug = `/posts/${current.slug}`
 
 const mdDescription = concat(current.data.category || '', current.data.tags.join(', '))
@@ -53,6 +55,7 @@ const lastMod = current.data.lastMod || current.data.date
 ---
 
 <MarkdownLayout
+  hasMath={hasMath}
   title={current.data.title}
   description={current.data.summary}
   image={current.data.cover}

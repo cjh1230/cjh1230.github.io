@@ -8,7 +8,7 @@ import { BackToTopFAB } from '@/components/BackToTopFAB'
 import { Provider } from '@/components/provider/Provider'
 import { ToastContainer } from '@/components/ToastContainer'
 import { ModalStack } from '@/components/ui/modal'
-import 'katex/dist/katex.min.css'
+import katexCss from 'katex/dist/katex.min.css?url'
 
 interface Props {
   title: string
@@ -17,12 +17,14 @@ interface Props {
   mdTitle: string
   mdDescription: string
   mdSlug: string
+  hasMath?: boolean
 }
 
-const { title, description, image, mdTitle, mdDescription, mdSlug } = Astro.props
+const { title, description, image, mdTitle, mdDescription, mdSlug, hasMath = false } = Astro.props
 ---
 
 <Layout title={title} description={description} image={image}>
+  {hasMath && <link rel="stylesheet" href={katexCss} />}
   <Provider
     pathName={Astro.url.pathname}
     title={mdTitle}
