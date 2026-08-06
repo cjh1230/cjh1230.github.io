@@ -26,14 +26,24 @@ export const ACCENT_COUNT = ACCENTS.length
 const ACCENT_KEY = 'gyoza-accent'
 
 export function getAccentIndex(): number {
-  const raw = Number.parseInt(localStorage.getItem(ACCENT_KEY) ?? '', 10)
+  let raw: number
+  try {
+    raw = Number.parseInt(localStorage.getItem(ACCENT_KEY) ?? '', 10)
+  } catch {
+    // storage unavailable — fall back to the default accent
+    return 0
+  }
   if (Number.isNaN(raw)) return 0
   return Math.min(Math.max(raw, 0), ACCENT_COUNT - 1)
 }
 
 export function setAccentIndex(index: number): void {
   const i = Math.min(Math.max(index, 0), ACCENT_COUNT - 1)
-  localStorage.setItem(ACCENT_KEY, String(i))
+  try {
+    localStorage.setItem(ACCENT_KEY, String(i))
+  } catch {
+    // storage unavailable — accent cannot be persisted, ignore
+  }
 }
 
 export function pickRandomAccentIndex(): number {
