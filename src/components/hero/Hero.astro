@@ -24,7 +24,11 @@ import SocialList from './SocialList.astro'
     <div class="mt-20 lg:mt-0 relative">
       <div class="relative size-[200px] lg:size-[300px] group">
         <div
-          class="size-full rounded-full overflow-hidden border-2 border-primary/50 bg-gradient-to-br from-white/10 to-black/10 dark:from-zinc-800 dark:to-zinc-900 animate-popup-spring avatar-clickable"
+          class="absolute -inset-3 rounded-full bg-accent/20 blur-2xl opacity-70 transition-opacity group-hover:opacity-100"
+        >
+        </div>
+        <div
+          class="relative size-full rounded-full overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-white/10 to-black/10 dark:from-zinc-800 dark:to-zinc-900 animate-popup-spring avatar-clickable"
         >
           <img
             class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
