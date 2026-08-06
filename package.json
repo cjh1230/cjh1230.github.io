@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "test": "vitest run",
     "astro": "astro",
     "lint": "prettier --write .",
     "new-friend": "node scripts/new-friend.js",
@@ -47,12 +48,14 @@
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@inquirer/prompts": "^5.0.2",
+    "happy-dom": "^20.11.1",
     "lint-staged": "^15.2.2",
     "micromark-util-symbol": "^2.0.0",
     "playwright": "^1.62.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "simple-git-hooks": "^2.11.1"
+    "simple-git-hooks": "^2.11.1",
+    "vitest": "^2.1.9"
   },
   "simple-git-hooks": {
     "commit-msg": "pnpm exec commitlint --edit $1",
