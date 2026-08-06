@@ -11,7 +11,8 @@
     "lint": "prettier --write .",
     "new-friend": "node scripts/new-friend.js",
     "new-post": "node scripts/new-post.js",
-    "new-project": "node scripts/new-project.js"
+    "new-project": "node scripts/new-project.js",
+    "screenshot": "node scripts/screenshot.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -48,6 +49,7 @@
     "@inquirer/prompts": "^5.0.2",
     "lint-staged": "^15.2.2",
     "micromark-util-symbol": "^2.0.0",
+    "playwright": "^1.62.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "simple-git-hooks": "^2.11.1"
