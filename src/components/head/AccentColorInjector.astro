@@ -11,8 +11,18 @@
 
   function inject() {
     // First visit: persist a random accent so it is stable across pages/refreshes
-    if (localStorage.getItem('gyoza-accent') === null) {
-      setAccentIndex(pickRandomAccentIndex())
+    let stored = null
+    try {
+      stored = localStorage.getItem('gyoza-accent')
+    } catch {
+      /* storage unavailable (private mode) — use default accent */
+    }
+    if (stored === null) {
+      try {
+        setAccentIndex(pickRandomAccentIndex())
+      } catch {
+        /* ignore */
+      }
     }
     const existing = document.getElementById(STYLE_ID)
     if (existing) existing.remove()

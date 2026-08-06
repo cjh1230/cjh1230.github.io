@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import {
   hexToRgb,
-  rgbStr,
   mixRgb,
   ACCENT_COUNT,
   getAccentIndex,

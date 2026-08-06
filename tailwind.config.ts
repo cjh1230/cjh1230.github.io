@@ -31,6 +31,7 @@ const config: Config = {
     extend: {
       colors: {
         accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        primary: 'rgb(var(--color-border-primary))',
       },
       textColor: {
         primary: 'rgb(var(--color-text-primary))',

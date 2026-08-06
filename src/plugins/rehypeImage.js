@@ -45,7 +45,6 @@ function buildImage(node) {
 }
 
 function buildFigure(node) {
-  const imgProps = node.properties
   let imgTitle = node.properties.title
   if (imgTitle) {
     imgTitle = imgTitle.trim()
