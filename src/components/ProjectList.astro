@@ -2,29 +2,41 @@
 import { getCollection } from 'astro:content'
 
 const projects = await getCollection('projects')
+
+function hostOf(link: string) {
+  try {
+    return new URL(link).hostname.replace(/^www\./, '')
+  } catch {
+    return ''
+  }
+}
 ---
 
-<ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
+<ul class="border-t border-primary">
   {
     projects.map((project, i) => (
-      <li class="animate-stagger-fade-up" style={`--i: ${i}`}>
-        <a href={project.data.link} target="_blank" rel="noopener noreferrer external">
-          <div class="rounded-lg bg-accent/10 overflow-hidden group animate-hover-spring">
-            <div class="aspect-video overflow-hidden">
-              <img
-                class="size-full object-cover transition-transform group-hover:scale-110"
-                src={project.data.image}
-                alt={`Project cover: ${project.data.title}`}
-                loading="lazy"
-              />
+      <li class="border-b border-primary">
+        <a
+          class="group flex gap-4 md:gap-6 py-5"
+          href={project.data.link}
+          target="_blank"
+          rel="noopener noreferrer external"
+        >
+          <span class="mono num w-7 shrink-0 pt-1 text-[12px] text-secondary" aria-hidden>
+            {String(i + 1).padStart(3, '0')}
+          </span>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-baseline justify-between gap-4">
+              <h2 class="text-lg font-semibold tracking-tight transition-colors group-hover:text-accent-ink">
+                {project.data.title}
+              </h2>
+              <span class="mono shrink-0 text-[11px] text-secondary">
+                {hostOf(project.data.link)} ↗
+              </span>
             </div>
-            <div class="p-4">
-              <div class="group-hover:text-accent">
-                <span class="text-xl font-bold">{project.data.title}</span>
-                <i class="ml-2 iconfont icon-external-link" />
-              </div>
-              <p class="mt-2 text-sm line-clamp-2">{project.data.description}</p>
-            </div>
+            <p class="mt-1.5 text-sm leading-relaxed text-secondary line-clamp-2">
+              {project.data.description}
+            </p>
           </div>
         </a>
       </li>

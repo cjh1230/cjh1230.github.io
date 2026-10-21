@@ -35,7 +35,7 @@ export function PostToc({ headings }: { headings: MarkdownHeading[] }) {
 
   return (
     <ul
-      className="relative overflow-y-auto space-y-2 group text-sm"
+      className="relative overflow-y-auto text-[12px] group"
       style={{
         maxHeight: 'min(380px, calc(100vh - 250px))',
         scrollbarWidth: 'none',
@@ -86,7 +86,6 @@ export function TocItem({
     if (itemTop < 0 || itemBottom > containerHeight) {
       if (scrollDirection === 'up') {
         $container.scrollTop = itemOffsetTop - containerHeight + itemHeight
-
       } else {
         $container.scrollTop = itemOffsetTop
       }
@@ -94,22 +93,18 @@ export function TocItem({
   }, [isActive])
 
   return (
-    <li className="relative" ref={itemRef}>
-      <span
-        className={clsx(
-          'absolute left-0 top-2 h-1 rounded-full',
-          isActive ? 'bg-accent' : 'bg-zinc-300 dark:bg-zinc-700',
-        )}
-        style={{ width: `${4 * (7 - depth)}px` }}
-      ></span>
+    <li ref={itemRef}>
       <a
         className={clsx(
-          'inline-block pl-8 opacity-0 transition-opacity duration-300',
-          isActive ? 'opacity-100' : 'group-hover:opacity-100 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100',
+          'block border-l py-1 leading-snug transition-colors',
+          isActive
+            ? 'border-accent text-accent-ink'
+            : 'border-primary text-secondary opacity-70 group-hover:opacity-100 hover:text-primary',
         )}
+        style={{ paddingLeft: `${12 + Math.max(0, depth - 2) * 10}px` }}
         href={`#${slug}`}
       >
-        <span>{text}</span>
+        {text}
       </a>
     </li>
   )

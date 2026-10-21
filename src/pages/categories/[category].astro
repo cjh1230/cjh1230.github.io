@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { getAllCategories, getOldestPosts, slugify } from '@/utils/content'
-import Highlight from '@/components/Highlight.astro'
 import Timeline from '@/components/Timeline.astro'
 
 export const getStaticPaths = (async () => {
@@ -34,13 +33,17 @@ const oldestPosts = await getOldestPosts().then((posts) => {
 ---
 
 <PageLayout title={`分类 · ${category.name}`}>
-  <div class="max-w-[800px] mx-auto px-4 py-16">
-    <header class="space-y-4 mb-8">
-      <h1 class="text-4xl font-bold">
-        分类：<Highlight>{category.name}</Highlight>
-      </h1>
-      <p>共有 {category.count} 篇文章。</p>
-    </header>
+  <header class="border-b border-primary">
+    <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-10 lg:py-14">
+      <div class="label">Channel / 分类</div>
+      <div class="mt-4 flex flex-wrap items-end justify-between gap-6">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-[-0.03em]">{category.name}</h1>
+        <span class="label num">{category.count} entries</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-8">
     <Timeline posts={oldestPosts} />
   </div>
 </PageLayout>

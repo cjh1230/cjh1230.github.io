@@ -1,21 +1,36 @@
 ---
-import TagList from '@/components/TagList.astro'
-import Highlight from '@/components/Highlight.astro'
 import { getAllTags } from '@/utils/content'
 import PageLayout from '@/layouts/PageLayout.astro'
 
-const allTags = await getAllTags()
+const allTags = (await getAllTags()).sort(
+  (a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-CN'),
+)
 ---
 
 <PageLayout title="标签">
-  <div class="max-w-[800px] mx-auto px-4 py-16">
-    <header class="space-y-4 mb-8">
-      <h1 class="text-4xl font-bold">
-        <Highlight>标签云</Highlight>
-      </h1>
-      <p>共有 {allTags.length} 个标签。</p>
-    </header>
+  <header class="border-b border-primary">
+    <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-10 lg:py-14">
+      <div class="label">Tag index / 标签</div>
+      <div class="mt-4 flex flex-wrap items-end justify-between gap-6">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-[-0.03em]">标签</h1>
+        <span class="label num">{allTags.length} tags</span>
+      </div>
+    </div>
+  </header>
 
-    <TagList tags={allTags} />
+  <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-8">
+    <ul class="grid sm:grid-cols-2 gap-x-10">
+      {
+        allTags.map((tag) => (
+          <li class="border-b border-primary">
+            <a class="group flex items-baseline py-2.5 text-[13px]" href={`/tags/${tag.slug}`}>
+              <span class="transition-colors group-hover:text-accent-ink">#{tag.name}</span>
+              <span class="leader" aria-hidden />
+              <span class="mono num text-[11px] text-secondary">{tag.count}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </PageLayout>

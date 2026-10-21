@@ -1,16 +1,16 @@
 ---
 interface Props {
   title: string
+  index?: string
 }
 
-const { title } = Astro.props
+const { title, index } = Astro.props
 ---
 
 <section>
-  <div class="mb-8 flex items-center gap-3 reveal">
-    <span class="section-accent"></span>
-    <h2 class="font-bold uppercase tracking-widest text-accent">{title}</h2>
-    <span class="h-px flex-1 bg-gradient-to-r from-primary to-transparent"></span>
+  <div class="mb-4 flex items-baseline gap-3 border-b border-primary pb-2">
+    {index && <span class="label">{index}</span>}
+    <h2 class="text-[13px] font-semibold tracking-wide">{title}</h2>
   </div>
   <slot />
 </section>

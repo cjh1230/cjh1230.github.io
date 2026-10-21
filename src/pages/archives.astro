@@ -1,23 +1,44 @@
 ---
 import Timeline from '@/components/Timeline.astro'
-import Highlight from '@/components/Highlight.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { getOldestPosts } from '@/utils/content'
-import { TimelineProgress } from '@/components/TimelineProgress'
+import { getIsoDate } from '@/utils/date'
 
 const oldestPosts = await getOldestPosts()
+const newest = oldestPosts[0]?.data.date
+const oldest = oldestPosts[oldestPosts.length - 1]?.data.date
+const coverage =
+  newest && oldest ? `${getIsoDate(oldest).slice(0, 7)} → ${getIsoDate(newest).slice(0, 7)}` : '—'
 ---
 
 <PageLayout title="归档">
-  <div class="max-w-[800px] mx-auto px-4 py-16">
-    <header class="space-y-4 mb-8">
-      <h1 class="text-4xl font-bold">
-        <Highlight>归档</Highlight>
-      </h1>
-      <p>共产出 {oldestPosts.length} 篇文章，再接再厉。</p>
-      <hr class="w-[100px] border-primary" />
-      <TimelineProgress client:idle />
-    </header>
+  <header class="border-b border-primary">
+    <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-10 lg:py-14">
+      <div class="label">Archive / 档案</div>
+      <div class="mt-4 flex flex-wrap items-end justify-between gap-6">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-[-0.03em]">归档</h1>
+        <span class="label num">{oldestPosts.length} entries</span>
+      </div>
+      <dl class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4 border-t border-primary pt-4">
+        <div>
+          <dt class="label">Coverage</dt>
+          <dd class="mt-1 mono num text-base">{coverage}</dd>
+        </div>
+        <div>
+          <dt class="label">Latest</dt>
+          <dd class="mt-1 mono num text-base">{newest ? getIsoDate(newest) : '—'}</dd>
+        </div>
+        <div>
+          <dt class="label">Years</dt>
+          <dd class="mt-1 mono num text-base">
+            {newest && oldest ? newest.getFullYear() - oldest.getFullYear() + 1 : '—'}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-8">
     <Timeline posts={oldestPosts} />
   </div>
 </PageLayout>

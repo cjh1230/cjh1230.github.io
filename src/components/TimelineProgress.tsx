@@ -29,17 +29,26 @@ export function TimelineProgress() {
   }, [])
 
   return (
-    <>
-      <p className="mt-4">
-        今天是 {currentYear} 年的第 <CountUp to={dayOfYear} decimals={0} /> 天
-      </p>
-      <p className="mt-4">
-        今年已过 <CountUp to={percentOfYear} decimals={5} />%
-      </p>
-      <p className="mt-4">
-        今天已过 <CountUp to={percentOfToday} decimals={5} />%
-      </p>
-    </>
+    <dl className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-4 border-t border-primary pt-4">
+      <div>
+        <dt className="label">Day of year</dt>
+        <dd className="mt-1 mono num text-xl">
+          {currentYear} · <CountUp to={dayOfYear} decimals={0} />
+        </dd>
+      </div>
+      <div>
+        <dt className="label">Year elapsed</dt>
+        <dd className="mt-1 mono num text-xl">
+          <CountUp to={percentOfYear} decimals={2} />%
+        </dd>
+      </div>
+      <div>
+        <dt className="label">Today elapsed</dt>
+        <dd className="mt-1 mono num text-xl">
+          <CountUp to={percentOfToday} decimals={2} />%
+        </dd>
+      </div>
+    </dl>
   )
 }
 

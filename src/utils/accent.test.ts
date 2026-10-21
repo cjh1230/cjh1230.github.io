@@ -43,6 +43,7 @@ describe('buildAccentStyle', () => {
   it('emits all required css variables', () => {
     const style = buildAccentStyle(0)
     expect(style).toContain('--color-accent:')
+    expect(style).toContain('--color-accent-ink:')
     expect(style).toContain('--color-bg-root:')
     expect(style).toContain('--color-bg-surface:')
     expect(style).toContain('--color-text-primary:')

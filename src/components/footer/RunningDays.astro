@@ -5,4 +5,4 @@ import { getDiffInDays } from '@/utils/date'
 const days = getDiffInDays(new Date(footer.startTime))
 ---
 
-{ days < 0 ? <span>Ops! 网站还没有发布</span> : <span>已经运行了 {days} 天</span> }
+<span class="mono uppercase tracking-[0.08em]">{days < 0 ? 'Not yet live' : `${days} 天`}</span>

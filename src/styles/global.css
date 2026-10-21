@@ -20,25 +20,150 @@
   font-display: swap;
 }
 
-::selection {
-  background-color: theme('colors.accent');
-  color: white;
+:root {
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+  --header-height: 56px;
+
+  /* Waline comment widget — align it with the datasheet tokens. */
+  --waline-theme-color: rgb(var(--color-accent-ink));
+  --waline-active-color: rgb(var(--color-accent-ink));
+  --waline-color: rgb(var(--color-text-primary));
+  --waline-bg-color: rgb(var(--color-bg-primary));
+  --waline-bg-color-light: rgb(var(--color-bg-secondary));
+  --waline-bg-color-hover: rgb(var(--color-bg-secondary));
+  --waline-border-color: rgb(var(--color-border-primary));
+  --waline-border: 1px solid rgb(var(--color-border-primary));
+  --waline-box-shadow: none;
+  --waline-avatar-radius: 0;
+  --waline-font-size: 14px;
 }
 
-[data-theme='dark'] ::selection {
-  background-color: theme('colors.accent/0.3');
+::selection {
+  background-color: rgb(var(--color-accent));
+  color: rgb(var(--color-bg-primary));
 }
 
 html {
-  color: theme('textColor.primary');
-  background-color: theme('backgroundColor.root');
-  scroll-padding-top: 64px;
+  color: rgb(var(--color-text-primary));
+  background-color: rgb(var(--color-bg-root));
+  scroll-padding-top: var(--header-height);
+  -webkit-text-size-adjust: 100%;
 }
 
 html.gray {
   filter: grayscale(1);
 }
 
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 * {
   scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 1px solid rgb(var(--color-text-primary));
+  outline-offset: 2px;
+}
+
+/* The search field is framed by its container's focus-within border. */
+.search-input:focus-visible {
+  outline: none;
+}
+
+/* Waline: square edges and hairline rules to match the sheet. */
+[data-waline] .wl-panel,
+[data-waline] .wl-header,
+[data-waline] .wl-editor,
+[data-waline] .wl-btn,
+[data-waline] .wl-emoji-popup {
+  border-radius: 0;
+}
+
+[data-waline] .wl-panel {
+  margin: 0;
+}
+
+[data-waline] .wl-header {
+  border-bottom: 1px solid rgb(var(--color-border-primary));
+}
+
+[data-waline] .wl-card {
+  border-bottom-style: solid;
+}
+
+/* The editor stays collapsed until the reader asks for it. */
+.comment-shell[data-comment-open='false'] .wl-panel {
+  display: none;
+}
+
+.comment-shell .wl-meta-head.is-empty {
+  display: none;
+}
+
+/* ===== Datasheet primitives ===== */
+
+/* Small uppercase technical label: section numbers, units, field names. */
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(var(--color-text-secondary));
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.rule-t {
+  border-top: 1px solid rgb(var(--color-border-primary));
+}
+
+.rule-b {
+  border-bottom: 1px solid rgb(var(--color-border-primary));
+}
+
+/* Dotted leader line between a name and its count, as in an index. */
+.leader {
+  flex: 1 1 auto;
+  align-self: flex-end;
+  border-bottom: 1px dotted rgb(var(--color-border-primary));
+  margin: 0 0.5rem 0.3rem;
+}
+
+.sheet-link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgb(var(--color-border-primary));
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+.sheet-link:hover {
+  color: rgb(var(--color-accent-ink));
+  text-decoration-color: rgb(var(--color-accent));
+}
+
+/* Row-level hover marker used by index tables. */
+.row-hover {
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+.row-hover:hover {
+  color: rgb(var(--color-accent-ink));
 }

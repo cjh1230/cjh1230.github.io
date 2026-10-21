@@ -10,26 +10,29 @@ interface Props {
 const { prev, next, class: className } = Astro.props
 ---
 
-<div class="grid grid-cols-2" class:list={[className]}>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6" class:list={[className]}>
   <div>
     {
       prev && (
-        <a class="flex items-baseline gap-2 hover:text-accent group" href={`/posts/${prev.slug}`}>
-          <i class="iconfont icon-arrow-left transition-transform group-hover:-translate-x-1" />
-          <span>{prev.data.title}</span>
+        <a class="group block" href={`/posts/${prev.slug}`}>
+          <div class="label">上一篇</div>
+          <div class="mt-1.5 flex items-baseline gap-2 text-sm transition-colors group-hover:text-accent-ink">
+            <i class="iconfont icon-arrow-left shrink-0" aria-hidden />
+            <span>{prev.data.title}</span>
+          </div>
         </a>
       )
     }
   </div>
-  <div>
+  <div class="sm:text-right">
     {
       next && (
-        <a
-          class="flex items-baseline justify-end gap-2 hover:text-accent group"
-          href={`/posts/${next.slug}`}
-        >
-          <span>{next.data.title}</span>
-          <i class="iconfont icon-arrow-right transition-transform group-hover:translate-x-1" />
+        <a class="group block" href={`/posts/${next.slug}`}>
+          <div class="label">下一篇</div>
+          <div class="mt-1.5 inline-flex items-baseline gap-2 text-sm transition-colors group-hover:text-accent-ink">
+            <span>{next.data.title}</span>
+            <i class="iconfont icon-arrow-right shrink-0" aria-hidden />
+          </div>
         </a>
       )
     }

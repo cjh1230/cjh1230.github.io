@@ -57,26 +57,29 @@ export function buildAccentStyle(index: number): string {
   const accent = ACCENTS[Math.min(Math.max(index, 0), ACCENT_COUNT - 1)]
   const light = hexToRgb(accent.light)
   const dark = hexToRgb(accent.dark)
-  const surfaceLight = hexToRgb(themeColor.bg.surface.light)
-  const surfaceDark = hexToRgb(themeColor.bg.surface.dark)
+  // Text needs 4.5:1 against the light paper; indicators may keep the pure hue.
+  const accentInk = mixRgb(light, hexToRgb(themeColor.text.primary.light), 0.42)
   const c = (key: string, rgb: Rgb) => `  ${key}: ${rgbStr(rgb)};`
 
+  // Backgrounds stay neutral on purpose: the accent is a state signal only.
   return `html {
 ${c('--color-accent', light)}
-${c('--color-bg-root', mixRgb(hexToRgb(themeColor.bg.root.light), light, 0.05))}
+${c('--color-accent-ink', accentInk)}
+${c('--color-bg-root', hexToRgb(themeColor.bg.root.light))}
 ${c('--color-bg-primary', hexToRgb(themeColor.bg.primary.light))}
 ${c('--color-bg-secondary', hexToRgb(themeColor.bg.secondary.light))}
-${c('--color-bg-surface', surfaceLight)}
+${c('--color-bg-surface', hexToRgb(themeColor.bg.surface.light))}
 ${c('--color-text-primary', hexToRgb(themeColor.text.primary.light))}
 ${c('--color-text-secondary', hexToRgb(themeColor.text.secondary.light))}
 ${c('--color-border-primary', hexToRgb(themeColor.border.primary.light))}
 }
 [data-theme='dark'] {
 ${c('--color-accent', dark)}
-${c('--color-bg-root', mixRgb(hexToRgb(themeColor.bg.root.dark), dark, 0.12))}
+${c('--color-accent-ink', dark)}
+${c('--color-bg-root', hexToRgb(themeColor.bg.root.dark))}
 ${c('--color-bg-primary', hexToRgb(themeColor.bg.primary.dark))}
 ${c('--color-bg-secondary', hexToRgb(themeColor.bg.secondary.dark))}
-${c('--color-bg-surface', surfaceDark)}
+${c('--color-bg-surface', hexToRgb(themeColor.bg.surface.dark))}
 ${c('--color-text-primary', hexToRgb(themeColor.text.primary.dark))}
 ${c('--color-text-secondary', hexToRgb(themeColor.text.secondary.dark))}
 ${c('--color-border-primary', hexToRgb(themeColor.border.primary.dark))}

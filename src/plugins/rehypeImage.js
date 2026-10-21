@@ -19,17 +19,29 @@ export function resolveImageSize(filePath) {
 
 export function rehypeImage() {
   return function (tree) {
+    let figureNumber = 0
     visit(tree, 'element', (node, index, parent) => {
       if (node.tagName === 'p' && node.children.length === 1) {
         const child = node.children[0]
         if (child.tagName === 'img') {
-          parent.children[index] = buildFigure(child)
+          figureNumber += 1
+          parent.children[index] = buildFigure(child, figureNumber)
         }
       } else if (node.tagName === 'img') {
         parent.children[index] = buildImage(node)
       }
     })
   }
+}
+
+const GENERIC_ALTS = new Set(['图片描述', '图片', 'image', 'img', ''])
+
+export function getCaption(node) {
+  const title = typeof node.properties.title === 'string' ? node.properties.title.trim() : ''
+  if (title) return title
+
+  const alt = typeof node.properties.alt === 'string' ? node.properties.alt.trim() : ''
+  return GENERIC_ALTS.has(alt.toLowerCase()) ? '' : alt
 }
 
 function buildImage(node) {
@@ -44,10 +56,13 @@ function buildImage(node) {
   return h('img', props)
 }
 
-function buildFigure(node) {
-  let imgTitle = node.properties.title
-  if (imgTitle) {
-    imgTitle = imgTitle.trim()
-  }
-  return h('figure', null, [buildImage(node), imgTitle ? h('figcaption', imgTitle) : null])
+function buildFigure(node, figureNumber) {
+  const caption = getCaption(node)
+  const label = `图 ${figureNumber}`
+  const figcaption = h('figcaption', [
+    h('span', { className: ['fig-number'] }, label),
+    caption ? h('span', { className: ['fig-caption'] }, ` · ${caption}`) : null,
+  ])
+
+  return h('figure', null, [buildImage(node), figcaption])
 }

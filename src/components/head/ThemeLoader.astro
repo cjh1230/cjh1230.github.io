@@ -11,6 +11,7 @@
   }
 
   function load() {
+    document.documentElement.classList.add('js')
     const localTheme = getLocalTheme()
     const systemTheme = getSystemTheme()
     if (localTheme === 'system') {

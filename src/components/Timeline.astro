@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { getShortDate } from '@/utils/date'
+import { getIsoDate } from '@/utils/date'
 
 interface Props {
   posts: CollectionEntry<'posts'>[]
@@ -31,26 +31,27 @@ const groupedPosts = posts.reduce<
 <section>
   {
     groupedPosts.map((year) => (
-      <div class="relative py-10">
-        <h3
-          class="absolute -top-3 -left-8 text-[7rem] text-transparent leading-none font-bold pointer-events-none select-none font-['Atkinson']"
-          style="-webkit-text-stroke: 2px rgb(var(--color-text-primary) / 0.1);"
-        >
-          {year.year}
-        </h3>
-        <ul class="space-y-4">
-          {year.posts.map((post, i) => (
-            <li class="flex items-baseline space-x-2 animate-stagger-fade-up" style={`--i: ${i}`}>
-              <span class="shrink-0 text-gray-600 dark:text-gray-300 text-sm">
-                {getShortDate(post.data.date)}
-              </span>
-              <a
-                class="hover:text-accent/80 hover:underline underline-offset-2"
-                href={`/posts/${post.slug}`}
-              >
-                {post.data.title}
+      <div class="grid grid-cols-[56px_1fr] md:grid-cols-[96px_1fr] gap-4 md:gap-8 border-t border-primary py-7">
+        <div class="mono num text-xl font-bold tracking-tight">{year.year}</div>
+        <ul>
+          {year.posts.map((post) => (
+            <li class="border-b border-primary last:border-b-0">
+              <a class="group flex items-baseline gap-4 py-2.5" href={`/posts/${post.slug}`}>
+                <time
+                  class="mono num w-10 shrink-0 text-[11px] text-secondary"
+                  datetime={post.data.date.toISOString()}
+                >
+                  {getIsoDate(post.data.date).slice(5)}
+                </time>
+                <span class="text-[15px] leading-snug transition-colors group-hover:text-accent-ink">
+                  {post.data.title}
+                </span>
+                {post.data.sticky > 0 && (
+                  <i class="iconfont icon-pushpin text-sm text-accent-ink" aria-label="置顶" />
+                )}
+                <span class="leader hidden sm:block" aria-hidden />
+                <span class="label hidden shrink-0 sm:block">阅读 →</span>
               </a>
-              {post.data.sticky > 0 && <i class="iconfont icon-pushpin text-red-500" />}
             </li>
           ))}
         </ul>

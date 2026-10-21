@@ -46,27 +46,72 @@
   },
   "color": {
     "accent": [
-      { "light": "#E85D5D", "dark": "#FFB4B4" },
-      { "light": "#4A90D9", "dark": "#9CC8FF" },
-      { "light": "#E8934A", "dark": "#FFCF9C" },
-      { "light": "#2F9E8F", "dark": "#8FDBC9" },
-      { "light": "#8A63D2", "dark": "#C9B3FF" },
-      { "light": "#E05D86", "dark": "#FFB3CC" },
-      { "light": "#4CAF78", "dark": "#A5E8C0" },
-      { "light": "#3399C4", "dark": "#8FD4EF" }
+      {
+        "light": "#E85D5D",
+        "dark": "#FFB4B4"
+      },
+      {
+        "light": "#4A90D9",
+        "dark": "#9CC8FF"
+      },
+      {
+        "light": "#E8934A",
+        "dark": "#FFCF9C"
+      },
+      {
+        "light": "#2F9E8F",
+        "dark": "#8FDBC9"
+      },
+      {
+        "light": "#8A63D2",
+        "dark": "#C9B3FF"
+      },
+      {
+        "light": "#E05D86",
+        "dark": "#FFB3CC"
+      },
+      {
+        "light": "#4CAF78",
+        "dark": "#A5E8C0"
+      },
+      {
+        "light": "#3399C4",
+        "dark": "#8FD4EF"
+      }
     ],
     "bg": {
-      "root": { "light": "#faf7ef", "dark": "#10101d" },
-      "primary": { "light": "#fffdf5", "dark": "#171724" },
-      "secondary": { "light": "#f4efe0", "dark": "#23233a" },
-      "surface": { "light": "#ffffff", "dark": "#1e1e32" }
+      "root": {
+        "light": "#ebeae5",
+        "dark": "#0a0b0d"
+      },
+      "primary": {
+        "light": "#f7f6f2",
+        "dark": "#0f1012"
+      },
+      "secondary": {
+        "light": "#e7e5de",
+        "dark": "#191b1f"
+      },
+      "surface": {
+        "light": "#ffffff",
+        "dark": "#141518"
+      }
     },
     "text": {
-      "primary": { "light": "#2b2b3a", "dark": "#e8e8f2" },
-      "secondary": { "light": "#6b6b78", "dark": "#a8a8c0" }
+      "primary": {
+        "light": "#16181c",
+        "dark": "#e9e8e3"
+      },
+      "secondary": {
+        "light": "#5d6068",
+        "dark": "#9b9ea6"
+      }
     },
     "border": {
-      "primary": { "light": "#e6dfc8", "dark": "#3a3a5e" }
+      "primary": {
+        "light": "#d2d0c8",
+        "dark": "#2b2d33"
+      }
     }
   },
   "menus": [

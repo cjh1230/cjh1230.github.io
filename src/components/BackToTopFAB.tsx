@@ -23,16 +23,18 @@ function BackToTop() {
 
   return (
     <motion.button
-      className="size-10 rounded-full shadow-lg shadow-zinc-800/5 border border-primary bg-white/50 dark:bg-zinc-800/50 backdrop-blur"
+      className="size-9 flex items-center justify-center border border-primary bg-primary text-secondary transition-colors hover:text-accent-ink hover:border-accent"
       type="button"
-      aria-label="Back to top"
+      aria-label="回到顶部"
       onClick={handleBackToTop}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
     >
-      <i className="iconfont icon-rocket"></i>
+      <span className="mono text-sm leading-none" aria-hidden>
+        ↑
+      </span>
     </motion.button>
   )
 }

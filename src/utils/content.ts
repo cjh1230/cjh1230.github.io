@@ -16,7 +16,8 @@ async function getAllPosts() {
 async function getNewestPosts() {
   const allPosts = await getAllPosts()
 
-  return allPosts.sort((a, b) => {
+  // Copy before sorting: the collection array is cached and shared.
+  return [...allPosts].sort((a, b) => {
     return a.data.date.valueOf() - b.data.date.valueOf()
   })
 }
@@ -25,7 +26,7 @@ async function getNewestPosts() {
 export async function getOldestPosts() {
   const allPosts = await getAllPosts()
 
-  return allPosts.sort((a, b) => {
+  return [...allPosts].sort((a, b) => {
     return b.data.date.valueOf() - a.data.date.valueOf()
   })
 }
@@ -34,7 +35,7 @@ export async function getOldestPosts() {
 export async function getSortedPosts() {
   const allPosts = await getAllPosts()
 
-  return allPosts.sort((a, b) => {
+  return [...allPosts].sort((a, b) => {
     if (a.data.sticky !== b.data.sticky) {
       return b.data.sticky - a.data.sticky
     } else {

@@ -1,5 +1,5 @@
 ---
-import RelativeDate from './RelativeDate.astro'
+import { getIsoDate } from '@/utils/date'
 
 interface Props {
   date: Date
@@ -12,18 +12,28 @@ interface Props {
 const { date, lastMod, words, readingMinutes, class: className } = Astro.props
 ---
 
-<div class="flex flex-wrap gap-2 text-sm text-secondary" class:list={[className]}>
-  <div>
-    <i class="iconfont icon-calendar"></i>
-    <RelativeDate date={date} />
-    {lastMod && <span class="text-xs">(已编辑)</span>}
-  </div>
-  <div>
-    <i class="iconfont icon-file-list"></i>
-    <span>{words} 字</span>
-  </div>
-  <div>
-    <i class="iconfont icon-timer"></i>
-    <span>{Math.ceil(readingMinutes)} 分钟</span>
-  </div>
+<div
+  class="flex flex-wrap items-center gap-x-4 gap-y-1 mono num text-[12px] text-secondary"
+  class:list={[className]}
+>
+  <span>
+    <span class="opacity-60">日期 </span>
+    <time datetime={date.toISOString()}>{getIsoDate(date)}</time>
+  </span>
+  <span>
+    <span class="opacity-60">字数 </span>
+    {words}
+  </span>
+  <span>
+    <span class="opacity-60">阅读 </span>
+    {Math.ceil(readingMinutes)} min
+  </span>
+  {
+    lastMod && (
+      <span>
+        <span class="opacity-60">编辑 </span>
+        {getIsoDate(lastMod)}
+      </span>
+    )
+  }
 </div>

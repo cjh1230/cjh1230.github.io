@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function Waline({ serverURL }: { serverURL: string }) {
   const ref = useRef<HTMLDivElement>(null)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -27,11 +28,54 @@ export function Waline({ serverURL }: { serverURL: string }) {
         /* waline load failure is non-fatal */
       })
 
+    // Hide the sort header while there is nothing to sort.
+    const root = ref.current
+    const syncEmptyState = () => {
+      if (!root) return
+      const empty = root.querySelectorAll('.wl-card').length === 0
+      root.querySelectorAll('.wl-meta-head').forEach((el) => {
+        el.classList.toggle('is-empty', empty)
+      })
+    }
+    const observer = new MutationObserver(syncEmptyState)
+    if (root) observer.observe(root, { childList: true, subtree: true })
+    syncEmptyState()
+
     return () => {
       cancelled = true
+      observer.disconnect()
       inst?.destroy?.()
     }
   }, [serverURL])
 
-  return <div ref={ref}></div>
+  function toggleEditor() {
+    setOpen((value) => {
+      const next = !value
+      if (next) {
+        setTimeout(() => {
+          const editor = ref.current?.querySelector<HTMLElement>('.wl-editor')
+          editor?.focus()
+        }, 80)
+      }
+      return next
+    })
+  }
+
+  return (
+    <section className="comment-shell mt-10" data-comment-open={open ? 'true' : 'false'}>
+      <div className="flex items-baseline justify-between gap-4 border-b border-primary pb-2">
+        <h2 className="label">评论 / Comments</h2>
+        <button
+          type="button"
+          className="text-[12px] text-secondary transition-colors hover:text-accent-ink"
+          aria-expanded={open}
+          aria-controls="comment-editor"
+          onClick={toggleEditor}
+        >
+          {open ? '收起' : '写评论'}
+        </button>
+      </div>
+      <div id="comment-editor" ref={ref} className="pt-4" />
+    </section>
+  )
 }

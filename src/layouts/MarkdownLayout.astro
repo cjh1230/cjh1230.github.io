@@ -1,6 +1,5 @@
 ---
 import Layout from './Layout.astro'
-import { HeadGradient } from '@/components/head-gradient'
 import Footer from '@/components/footer/Footer.astro'
 import { Header } from '@/components/header/Header'
 import { SearchPanel } from '@/components/SearchPanel'
@@ -34,8 +33,7 @@ const { title, description, image, mdTitle, mdDescription, mdSlug, hasMath = fal
   />
 
   <Header client:only="react" transition:persist="header" />
-  <main class="relative z-1 pt-16 min-h-main bg-primary">
-    <HeadGradient />
+  <main class="relative z-1 pt-14 min-h-main bg-primary">
     <slot />
   </main>
   <Footer />

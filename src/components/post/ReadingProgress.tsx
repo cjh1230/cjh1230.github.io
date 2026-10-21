@@ -24,14 +24,17 @@ export function ReadingProgress() {
   }, [scrollY])
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="h-1.5 w-24 rounded-full bg-primary/15 overflow-hidden">
+    <div>
+      <div className="flex items-baseline justify-between mono text-[10px] uppercase tracking-[0.08em] text-secondary">
+        <span>阅读进度</span>
+        <span className="num">{percent}%</span>
+      </div>
+      <div className="mt-2 h-px w-full bg-[rgb(var(--color-border-primary))]">
         <div
-          className="h-full rounded-full bg-accent transition-[width] duration-150"
+          className="h-px bg-accent transition-[width] duration-150"
           style={{ width: `${percent}%` }}
         />
       </div>
-      <span className="text-sm tabular-nums">{percent}%</span>
     </div>
   )
 }

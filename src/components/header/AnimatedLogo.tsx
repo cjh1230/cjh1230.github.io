@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useShouldHeaderMetaShow, useIsMobile } from './hooks'
-import { author } from '@/config.json'
+import { author, site } from '@/config.json'
 
 export function AnimatedLogo() {
   const isMobile = useIsMobile()
@@ -23,12 +23,15 @@ export function AnimatedLogo() {
 
 function Logo() {
   return (
-    <a className="block" href="/" title="Nav to home">
+    <a className="flex items-center gap-2.5 min-w-0" href="/" title="返回首页">
       <img
-        className="size-[40px] select-none object-cover rounded-2xl"
+        className="size-7 shrink-0 select-none object-cover border border-primary"
         src={author.avatar}
-        alt="Site owner avatar"
+        alt=""
+        width="28"
+        height="28"
       />
+      <span className="font-mono text-sm font-bold tracking-tight leading-none">{site.title}</span>
     </a>
   )
 }

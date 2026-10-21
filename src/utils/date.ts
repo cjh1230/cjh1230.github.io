@@ -53,6 +53,23 @@ export function getDiffInDays(startDate: Date, endDate = new Date()) {
   return Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 86400))
 }
 
+// 获取 ISO 日期，格式为：2026-05-26
+export function getIsoDate(date: Date) {
+  const year = date.getFullYear()
+  const month = padZero(date.getMonth() + 1)
+  const day = padZero(date.getDate())
+
+  return `${year}-${month}-${day}`
+}
+
+// 获取 ISO 日期时间，格式为：2026-05-26 08:00
+export function getIsoDateTime(date: Date) {
+  const hours = padZero(date.getHours())
+  const minutes = padZero(date.getMinutes())
+
+  return `${getIsoDate(date)} ${hours}:${minutes}`
+}
+
 // 获取一个短的日期，格式为：04-20
 export function getShortDate(date: Date) {
   const month = padZero(date.getMonth() + 1)

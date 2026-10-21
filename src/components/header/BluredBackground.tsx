@@ -5,7 +5,7 @@ export function BluredBackground() {
 
   return (
     <div
-      className="absolute inset-0 -z-1 border-b border-primary bg-white/70 dark:bg-zinc-800/70 backdrop-saturate-150 backdrop-blur-lg transform-gpu"
+      className="absolute inset-0 -z-1 bg-primary border-b border-primary transform-gpu"
       style={{
         opacity,
       }}

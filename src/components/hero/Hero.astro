@@ -1,101 +1,93 @@
 ---
-import { hero, author } from '@/config.json'
-import SocialList from './SocialList.astro'
+import { hero } from '@/config.json'
+import { getAllCategories, getAllPostsWordCount, getSortedPosts } from '@/utils/content'
+import { getIsoDate } from '@/utils/date'
+
+const posts = await getSortedPosts()
+const wordCount = await getAllPostsWordCount()
+const categories = await getAllCategories()
+
+const pad = (n: number) => String(n).padStart(2, '0')
+const latest = posts[0]?.data.date ?? new Date()
+const revision = `${latest.getFullYear()}.${pad(latest.getMonth() + 1)}`
+
+// Only fields a reader can act on: freshness, volume, breadth.
+const specs = [
+  { label: 'Updated', value: getIsoDate(latest) },
+  { label: 'Entries', value: String(posts.length) },
+  { label: 'Topics', value: String(categories.length) },
+]
 ---
 
-<div class="lg:-mt-16 lg:h-dvh lg:min-h-[720px]">
-  <div
-    class="relative max-w-[1300px] mx-auto h-full px-4 grid lg:grid-cols-2 items-center justify-items-center"
-  >
-    <div class="mt-[120px] lg:mt-0 max-w-[590px]">
-      <h1 class="text-5xl font-bold text-center lg:text-left char-bounce">
-        <span>c</span><span>i</span><span>n</span>
-      </h1>
-      <p
-        class="text-xl text-center lg:text-left text-secondary mt-4 animate-fade-slide-up"
-        style="--delay: 800ms"
-      >
-        让机器看见世界。
-      </p>
-      <p
-        class="text-sm text-center lg:text-left text-secondary/60 mt-3 animate-fade-slide-up"
-        style="--delay: 1000ms"
-      >
-        嵌入式 / CV / 机器人
-      </p>
-
-      <SocialList className="mt-10" />
-    </div>
-
-    <div class="mt-20 lg:mt-0 relative">
-      <div class="relative size-[200px] lg:size-[300px] group">
-        <div
-          class="pointer-events-none absolute -inset-3 rounded-full bg-accent/20 blur-2xl opacity-70 transition-opacity group-hover:opacity-100"
-        >
+<section class="border-b border-primary">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+    <div class="grid lg:grid-cols-[1fr_320px]">
+      <div class="py-8 lg:py-12 lg:pr-12">
+        <div class="flex items-center gap-3">
+          <span class="label">Doc. CIN-001</span>
+          <span class="h-px flex-1 bg-[rgb(var(--color-border-primary))]" aria-hidden></span>
+          <span class="label">Rev. {revision}</span>
         </div>
-        <div
-          class="relative size-full rounded-full overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-white/10 to-black/10 dark:from-zinc-800 dark:to-zinc-900 animate-popup-spring avatar-clickable"
+
+        <h1
+          class="mt-6 text-[clamp(2.75rem,7vw,4.5rem)] font-bold leading-[0.92] tracking-[-0.04em]"
         >
-          <img
-            class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
-            src={author.avatar}
-            alt={`${hero.name} 的头像`}
-            width="300"
-            height="300"
-            loading="lazy"
-            decoding="async"
-          />
+          cin
+        </h1>
+        <p class="mt-4 text-lg md:text-xl tracking-tight">让机器看见世界。</p>
+        <p class="mt-2 max-w-[52ch] text-sm leading-relaxed text-secondary">
+          {hero.description}
+        </p>
+
+        <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+          {
+            hero.socials.map((social) => (
+              <li>
+                <a
+                  class="mono text-[11px] uppercase tracking-[0.08em] text-secondary transition-colors hover:text-accent-ink"
+                  href={social.url}
+                  target={social.url.startsWith('http') ? '_blank' : undefined}
+                  rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {social.name}
+                  <span aria-hidden class="ml-1 opacity-60">
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div
+          class="mt-5 flex flex-wrap gap-x-4 gap-y-1 mono num text-[12px] text-secondary lg:hidden"
+        >
+          <span>{posts.length} 篇</span>
+          <span aria-hidden class="opacity-40">/</span>
+          <span>{categories.length} 主题</span>
+          <span aria-hidden class="opacity-40">/</span>
+          <span>更新 {getIsoDate(latest)}</span>
         </div>
       </div>
-    </div>
 
-    <div class="mt-10 lg:mt-0 lg:absolute inset-x-0 bottom-0 flex flex-col items-center">
-      <div class="mt-8 flex flex-col items-center space-y-4">
-        <div class="text-lg animate-bounce" style="animation-duration: 2s;">
-          <i class="iconfont icon-down"></i>
+      <aside class="hidden lg:block border-t border-primary lg:border-t-0 lg:border-l">
+        <div class="py-8 lg:py-12 lg:pl-8">
+          <dl class="border-t border-primary">
+            {
+              specs.map((spec) => (
+                <div class="flex items-baseline justify-between gap-4 border-b border-primary py-2.5">
+                  <dt class="label">{spec.label}</dt>
+                  <dd class="mono num text-[12px] text-right">{spec.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          <p class="mt-4 text-xs leading-relaxed text-secondary">
+            共 {(wordCount / 1000).toFixed(1)}k 字 · 最新
+            <span class="mono num whitespace-nowrap">{getIsoDate(latest)}</span>
+          </p>
         </div>
-        <div class="text-xs text-secondary animate-pulse">向下滚动</div>
-      </div>
+      </aside>
     </div>
   </div>
-</div>
-
-<style>
-  @keyframes gentle-pulse {
-    0%,
-    100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-  .animate-pulse {
-    animation: gentle-pulse 3s ease-in-out infinite;
-  }
-
-  .char-bounce span {
-    display: inline-block;
-    opacity: 0;
-    animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  }
-  .char-bounce span:nth-child(1) {
-    animation-delay: 0.3s;
-  }
-  .char-bounce span:nth-child(2) {
-    animation-delay: 0.45s;
-  }
-  .char-bounce span:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-  @keyframes pop-in {
-    from {
-      opacity: 0;
-      transform: translateY(0.6em) scale(0.5);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-</style>
+</section>

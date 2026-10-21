@@ -9,7 +9,7 @@ const isExternal = href.startsWith('http')
 ---
 
 <a
-  class="hover:text-accent"
+  class="sheet-link"
   href={href}
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noopener noreferrer' : undefined}><slot /></a

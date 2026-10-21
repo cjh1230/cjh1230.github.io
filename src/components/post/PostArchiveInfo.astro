@@ -10,36 +10,28 @@ interface Props {
 const { tags, category, class: className } = Astro.props
 ---
 
-<div class="flex flex-wrap gap-2 text-sm text-secondary" class:list={[className]}>
+<div
+  class="flex flex-wrap items-center gap-x-3 gap-y-1 mono text-[12px] text-secondary"
+  class:list={[className]}
+>
   {
     category && (
-      <div>
-        <i class="iconfont icon-folder" />
-        <a
-          class="hover:text-accent hover:underline underline-offset-2 decoration-dashed"
-          href={`/categories/${slugify(category)}`}
-        >
-          {category}
-        </a>
-      </div>
+      <a class="transition-colors hover:text-accent-ink" href={`/categories/${slugify(category)}`}>
+        <span class="opacity-60">分类 </span>
+        {category}
+      </a>
     )
   }
   {
     tags.length > 0 && (
-      <div>
-        <i class="iconfont icon-hashtag" />
-        {tags.map((tag, index) => (
-          <>
-            {index > 0 && <span>, </span>}
-            <a
-              class="hover:text-accent hover:underline underline-offset-2 decoration-dashed"
-              href={`/tags/${slugify(tag)}`}
-            >
-              {tag}
-            </a>
-          </>
+      <span class="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <span class="opacity-60">标签</span>
+        {tags.map((tag) => (
+          <a class="transition-colors hover:text-accent-ink" href={`/tags/${slugify(tag)}`}>
+            #{tag}
+          </a>
         ))}
-      </div>
+      </span>
     )
   }
 </div>

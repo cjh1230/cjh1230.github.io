@@ -4,7 +4,6 @@ import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
-import Highlight from '@/components/Highlight.astro'
 import SectionBlock from '@/components/SectionBlock.astro'
 import MarkdownWrapper from '@/components/MarkdownWrapper.astro'
 import FriendList from '@/components/FriendList.astro'
@@ -34,18 +33,27 @@ const { headings, Content } = await md.render()
 
 const isPageLayout = ['friends', 'projects'].includes(md.slug)
 const isMdContentEmpty = md.body.trim().length === 0
+const hasToc = headings.length >= 3
 ---
 
 {
   isPageLayout ? (
     <PageLayout title={md.data.title} description={md.data.description}>
-      <div class="max-w-[800px] mx-auto px-4 py-16 space-y-8">
-        <header class="space-y-4">
-          <h1 class="text-4xl font-bold">
-            <Highlight>{md.data.title}</Highlight>
-          </h1>
-          <p>{md.data.description}</p>
-        </header>
+      <header class="border-b border-primary">
+        <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-10 lg:py-14">
+          <div class="label">Spec / {md.slug}</div>
+          <div class="mt-4 flex flex-wrap items-end justify-between gap-6">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-[-0.03em]">{md.data.title}</h1>
+          </div>
+          {md.data.description && (
+            <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-secondary">
+              {md.data.description}
+            </p>
+          )}
+        </div>
+      </header>
+
+      <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-10 space-y-10">
         {md.slug === 'friends' && <FriendList />}
         {md.slug === 'projects' && <ProjectList />}
         {!isMdContentEmpty && (
@@ -64,30 +72,40 @@ const isMdContentEmpty = md.body.trim().length === 0
       mdDescription={md.data.description}
       mdSlug={md.slug}
     >
-      <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-16 grid lg:grid-cols-[auto_260px] gap-8">
-        <div>
-          <header class="space-y-4">
-            <h1 class="text-4xl font-bold">
-              <Highlight>{md.data.title}</Highlight>
-            </h1>
-            <p>{md.data.description}</p>
-          </header>
+      <div class="max-w-[1100px] mx-auto px-4 md:px-8">
+        <header class="py-10 lg:py-14 border-b border-primary">
+          <div class="label">Spec / {md.slug}</div>
+          <h1 class="mt-4 text-4xl md:text-5xl font-bold tracking-[-0.03em]">{md.data.title}</h1>
+          {md.data.description && (
+            <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-secondary">
+              {md.data.description}
+            </p>
+          )}
+        </header>
+
+        <div
+          class="py-10 grid gap-10 lg:gap-14"
+          class:list={[hasToc ? 'lg:grid-cols-[minmax(0,1fr)_240px]' : 'grid-cols-1']}
+        >
+          <div class="min-w-0 max-w-[820px]">
+            <MarkdownWrapper>
+              <Content />
+            </MarkdownWrapper>
+            {md.data.comments && <Comments />}
+          </div>
+          {hasToc && (
+            <div class="hidden lg:block">
+              <aside class="sticky top-20">
+                <SectionBlock title="目录" index="T">
+                  <PostToc headings={headings} client:idle />
+                  <div class="mt-4 pt-3 border-t border-primary">
+                    <ReadingProgress client:idle />
+                  </div>
+                </SectionBlock>
+              </aside>
+            </div>
+          )}
         </div>
-        <div class="col-start-1 min-w-0">
-          <MarkdownWrapper>
-            <Content />
-          </MarkdownWrapper>
-        </div>
-        <div class="hidden lg:block">
-          <aside class="sticky top-20">
-            <SectionBlock title="目录">
-              <PostToc headings={headings} client:idle />
-              <hr class="my-2 border-primary max-w-[100px]" />
-              <ReadingProgress client:idle />
-            </SectionBlock>
-          </aside>
-        </div>
-        {md.data.comments && <Comments />}
       </div>
     </MarkdownLayout>
   )

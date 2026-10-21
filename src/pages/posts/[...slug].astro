@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import type { GetStaticPaths } from 'astro'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
-import { getSortedPosts } from '@/utils/content'
+import { getSortedPosts, slugify } from '@/utils/content'
 import MarkdownWrapper from '@/components/MarkdownWrapper.astro'
 import SectionBlock from '@/components/SectionBlock.astro'
 import { PostToc } from '@/components/post/PostToc'
@@ -14,6 +14,7 @@ import PostNav from '@/components/post/PostNav.astro'
 import { Comments } from '@/components/comment'
 import { ActionAside } from '@/components/post/ActionAside'
 import { PostCopyright } from '@/components/post/PostCopyright'
+import { getIsoDate } from '@/utils/date'
 
 export const getStaticPaths = (async () => {
   const sortedPosts = await getSortedPosts()
@@ -63,50 +64,89 @@ const lastMod = current.data.lastMod || current.data.date
   mdDescription={mdDescription}
   mdSlug={mdSlug}
 >
-  <div class="max-w-[1100px] mx-auto px-4 md:px-8 py-16 grid lg:grid-cols-[auto_260px] gap-8">
-    <div>
-      <header class="space-y-4">
-        <h1 class="text-4xl font-bold text-center">
-          {current.data.title}
-        </h1>
+  <div class="max-w-[1100px] mx-auto px-4 md:px-8">
+    <header class="py-10 lg:py-14 border-b border-primary">
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 label">
+        <a class="transition-colors hover:text-accent-ink" href="/">Index</a>
+        <span aria-hidden>/</span>
+        {
+          current.data.category && (
+            <>
+              <a
+                class="transition-colors hover:text-accent-ink"
+                href={`/categories/${slugify(current.data.category)}`}
+              >
+                {current.data.category}
+              </a>
+              <span aria-hidden>/</span>
+            </>
+          )
+        }
+        <span class="num">{getIsoDate(current.data.date)}</span>
+      </div>
+
+      <h1
+        class="mt-6 max-w-[22ch] text-3xl md:text-[2.75rem] font-bold leading-[1.1] tracking-[-0.025em]"
+      >
+        {current.data.title}
+      </h1>
+
+      {
+        current.data.summary && (
+          <p class="mt-4 max-w-[62ch] text-sm md:text-base leading-relaxed text-secondary">
+            {current.data.summary}
+          </p>
+        )
+      }
+
+      <div class="mt-6 space-y-2">
         <PostMetaInfo
-          class="justify-center"
           date={current.data.date}
           lastMod={current.data.lastMod}
           words={remarkPluginFrontmatter.words}
           readingMinutes={remarkPluginFrontmatter.readingMinutes}
         />
-        <PostArchiveInfo
-          class="justify-center"
-          category={current.data.category}
-          tags={current.data.tags}
-        />
-        <div>
-          <Outdate lastMod={lastMod} />
-        </div>
-      </header>
-    </div>
-    <div class="col-start-1 min-w-0">
-      <MarkdownWrapper>
-        <Content />
-      </MarkdownWrapper>
-    </div>
-    <div class="hidden lg:block">
-      <aside class="sticky top-20">
-        <SectionBlock title="目录">
-          <PostToc headings={headings} client:idle />
-          <hr class="my-2 border-primary max-w-[100px]" />
-          <ReadingProgress client:idle />
-        </SectionBlock>
-        <ActionAside client:idle />
-      </aside>
-    </div>
-    <div>
-      <section class="space-y-6">
-        <PostCopyright title={current.data.title} slug={mdSlug} lastMod={lastMod} client:visible />
-        <PostNav prev={prev} next={next} />
-        {current.data.comments && <Comments />}
-      </section>
+        <PostArchiveInfo category={current.data.category} tags={current.data.tags} />
+      </div>
+
+      {
+        lastMod && (
+          <div class="mt-6">
+            <Outdate lastMod={lastMod} />
+          </div>
+        )
+      }
+    </header>
+
+    <div class="py-10 grid lg:grid-cols-[minmax(0,1fr)_240px] gap-10 lg:gap-14">
+      <div class="min-w-0 space-y-12">
+        <MarkdownWrapper>
+          <Content />
+        </MarkdownWrapper>
+
+        <section class="space-y-8 border-t border-primary pt-8">
+          <PostCopyright
+            title={current.data.title}
+            slug={mdSlug}
+            lastMod={lastMod}
+            client:visible
+          />
+          <PostNav prev={prev} next={next} />
+          {current.data.comments && <Comments />}
+        </section>
+      </div>
+
+      <div class="hidden lg:block">
+        <aside class="sticky top-20 space-y-8">
+          <SectionBlock title="目录" index="T">
+            <PostToc headings={headings} client:idle />
+            <div class="mt-4 pt-3 border-t border-primary">
+              <ReadingProgress client:idle />
+            </div>
+          </SectionBlock>
+          <ActionAside client:idle />
+        </aside>
+      </div>
     </div>
   </div>
 </MarkdownLayout>

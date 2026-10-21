@@ -6,12 +6,12 @@ export function SearchButton() {
 
   return (
     <button
-      className="size-9 rounded-full shadow-lg shadow-zinc-800/5 border border-primary bg-white/50 dark:bg-zinc-800/50 backdrop-blur"
+      className="size-8 flex items-center justify-center border border-primary text-secondary transition-colors hover:text-accent-ink hover:border-accent"
       type="button"
-      aria-label="Search"
+      aria-label="搜索"
       onClick={() => setSearchPanelOpen(true)}
     >
-      <i className="iconfont icon-search"></i>
+      <i className="iconfont icon-search text-sm" aria-hidden />
     </button>
   )
 }

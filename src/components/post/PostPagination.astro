@@ -20,13 +20,13 @@ if (current < total)
   items.push({ isButton: true, page: current + 1, icon: 'right', label: '下一页' })
 ---
 
-<div class="mt-12 flex items-center justify-center gap-2">
+<nav class="mt-10 flex items-center justify-center gap-1" aria-label="分页">
   {
     items.map((item) => {
       if (item.isButton) {
         return (
           <a
-            class="size-8 rounded-lg flex items-center justify-center transition-bg-color duration-200  hover:bg-accent/20 select-none"
+            class="mono num size-8 flex items-center justify-center border border-primary text-xs transition-colors hover:border-accent hover:text-accent-ink"
             href={getPageUrl(item.page!)}
             aria-label={item.label}
           >
@@ -36,8 +36,13 @@ if (current < total)
       } else {
         return (
           <span
-            class="size-8 rounded-lg flex items-center justify-center cursor-default select-none"
-            class:list={[{ 'text-white bg-accent dark:text-black': item.page === current }]}
+            class="mono num size-8 flex items-center justify-center border text-xs cursor-default select-none"
+            class:list={[
+              {
+                'border-accent text-accent-ink': item.page === current,
+                'border-primary': item.page !== current,
+              },
+            ]}
           >
             {item.icon ? <i class={`iconfont icon-${item.icon}`} /> : item.page}
           </span>
@@ -45,4 +50,4 @@ if (current < total)
       }
     })
   }
-</div>
+</nav>

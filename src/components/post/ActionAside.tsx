@@ -34,7 +34,7 @@ const shareList = [
 export function ActionAside() {
   return (
     <div
-      className="absolute left-0 bottom-0 flex flex-col gap-4"
+      className="absolute left-0 bottom-0 flex items-center gap-4 mono text-[10px] uppercase tracking-[0.08em] text-secondary"
       style={{
         transform: 'translateY(calc(100% + 24px))',
       }}
@@ -62,11 +62,12 @@ function ShareButton() {
   return (
     <button
       type="button"
-      aria-label="Share this post"
-      className="size-6 text-xl leading-none hover:text-accent"
+      aria-label="分享这篇文章"
+      className="inline-flex items-center gap-1.5 transition-colors hover:text-accent-ink"
       onClick={() => openModal()}
     >
-      <i className="iconfont icon-share"></i>
+      <i className="iconfont icon-share" aria-hidden />
+      <span>分享</span>
     </button>
   )
 }
@@ -74,7 +75,7 @@ function ShareButton() {
 function ShareModal({ url, text }: { url: string; text: string }) {
   return (
     <motion.div
-      className="bg-primary rounded-lg p-2 min-w-[420px] border border-primary flex flex-col"
+      className="bg-surface p-3 min-w-[420px] border border-primary flex flex-col"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.8 }}
@@ -94,13 +95,13 @@ function ShareModal({ url, text }: { url: string; text: string }) {
           <ul className="flex flex-col gap-2">
             {shareList.map((item) => (
               <li
-                className="px-2 py-1 flex gap-2 cursor-pointer rounded-md hover:bg-secondary"
+                className="px-2 py-1 flex gap-2 cursor-pointer transition-colors hover:bg-secondary"
                 key={item.name}
                 onClick={() => item.onClick({ url, text })}
                 role="button"
                 aria-label={`Share to ${item.name}`}
               >
-                <i className={clsx('iconfont text-accent', item.icon)}></i>
+                <i className={clsx('iconfont text-accent-ink', item.icon)}></i>
                 <span>{item.name}</span>
               </li>
             ))}
@@ -123,11 +124,12 @@ function DonateButton() {
   return (
     <button
       type="button"
-      aria-label="Donate to author"
-      className="size-6 text-xl leading-none hover:text-accent"
+      aria-label="赞赏作者"
+      className="inline-flex items-center gap-1.5 transition-colors hover:text-accent-ink"
       onClick={() => openDonate()}
     >
-      <i className="iconfont icon-user-heart"></i>
+      <i className="iconfont icon-user-heart" aria-hidden />
+      <span>赞赏</span>
     </button>
   )
 }
