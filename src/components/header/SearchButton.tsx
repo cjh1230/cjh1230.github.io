@@ -6,7 +6,7 @@ export function SearchButton() {
 
   return (
     <button
-      className="size-8 flex items-center justify-center border border-primary text-secondary transition-colors hover:text-accent-ink hover:border-accent"
+      className="size-10 lg:size-8 flex items-center justify-center border border-primary text-secondary transition-colors hover:text-accent-ink hover:border-accent"
       type="button"
       aria-label="搜索"
       onClick={() => setSearchPanelOpen(true)}

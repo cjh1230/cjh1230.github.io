@@ -20,9 +20,13 @@ export function AccentSwitcher() {
         aria-expanded={open}
         title="更换强调色"
         onClick={() => setOpen((value) => !value)}
-        className="size-3.5 border border-[rgb(var(--color-text-primary))]"
-        style={{ backgroundColor: ACCENTS[active].light }}
-      />
+        className="inline-flex size-6 items-center justify-center"
+      >
+        <span
+          className="size-3.5 border border-[rgb(var(--color-text-primary))]"
+          style={{ backgroundColor: ACCENTS[active].light }}
+        />
+      </button>
 
       {open ? (
         <div className="flex items-center gap-1.5" role="radiogroup" aria-label="选择强调色">
@@ -34,18 +38,22 @@ export function AccentSwitcher() {
               aria-checked={i === active}
               aria-label={`强调色 ${i + 1}`}
               onClick={() => select(i)}
-              className={clsx(
-                'size-3.5 border transition-transform',
-                i === active
-                  ? 'border-[rgb(var(--color-text-primary))] scale-110'
-                  : 'border-transparent hover:scale-110',
-              )}
-              style={{ backgroundColor: accent.light }}
-            />
+              className="inline-flex size-6 items-center justify-center"
+            >
+              <span
+                className={clsx(
+                  'size-3.5 border transition-transform',
+                  i === active
+                    ? 'border-[rgb(var(--color-text-primary))] scale-110'
+                    : 'border-transparent hover:scale-110',
+                )}
+                style={{ backgroundColor: accent.light }}
+              />
+            </button>
           ))}
           <button
             type="button"
-            className="ml-1 text-[11px] text-secondary transition-colors hover:text-primary"
+            className="ml-1 inline-flex min-h-6 items-center text-[11px] text-secondary transition-colors hover:text-primary"
             onClick={() => setOpen(false)}
           >
             收起
@@ -54,7 +62,7 @@ export function AccentSwitcher() {
       ) : (
         <button
           type="button"
-          className="text-[11px] text-secondary transition-colors hover:text-primary"
+          className="inline-flex min-h-6 items-center text-[11px] text-secondary transition-colors hover:text-primary"
           onClick={() => setOpen(true)}
         >
           更换

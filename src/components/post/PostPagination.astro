@@ -26,7 +26,7 @@ if (current < total)
       if (item.isButton) {
         return (
           <a
-            class="mono num size-8 flex items-center justify-center border border-primary text-xs transition-colors hover:border-accent hover:text-accent-ink"
+            class="mono num size-10 sm:size-8 flex items-center justify-center border border-primary text-xs transition-colors hover:border-accent hover:text-accent-ink"
             href={getPageUrl(item.page!)}
             aria-label={item.label}
           >
@@ -36,7 +36,7 @@ if (current < total)
       } else {
         return (
           <span
-            class="mono num size-8 flex items-center justify-center border text-xs cursor-default select-none"
+            class="mono num size-10 sm:size-8 flex items-center justify-center border text-xs cursor-default select-none"
             class:list={[
               {
                 'border-accent text-accent-ink': item.page === current,

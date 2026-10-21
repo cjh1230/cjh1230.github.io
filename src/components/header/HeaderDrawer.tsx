@@ -89,7 +89,7 @@ const TriggerButton = forwardRef<HTMLButtonElement>((props, ref) => {
   return (
     <button
       ref={ref}
-      className="size-8 flex items-center justify-center border border-primary text-secondary"
+      className="size-10 flex items-center justify-center border border-primary text-secondary"
       type="button"
       aria-label="打开菜单"
       {...props}

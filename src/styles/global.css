@@ -157,6 +157,24 @@ body {
   text-decoration-color: rgb(var(--color-accent));
 }
 
+/* Native disclosure used by the mobile index and article outline. */
+.sheet-details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.sheet-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sheet-chevron {
+  transition: transform 0.2s ease;
+}
+
+.sheet-details[open] .sheet-chevron {
+  transform: rotate(180deg);
+}
+
 /* Row-level hover marker used by index tables. */
 .row-hover {
   transition:

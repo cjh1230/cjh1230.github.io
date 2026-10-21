@@ -23,7 +23,7 @@ function BackToTop() {
 
   return (
     <motion.button
-      className="size-9 flex items-center justify-center border border-primary bg-primary text-secondary transition-colors hover:text-accent-ink hover:border-accent"
+      className="size-11 lg:size-9 flex items-center justify-center border border-primary bg-primary text-secondary transition-colors hover:text-accent-ink hover:border-accent"
       type="button"
       aria-label="回到顶部"
       onClick={handleBackToTop}

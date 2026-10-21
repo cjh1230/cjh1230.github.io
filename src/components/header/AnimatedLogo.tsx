@@ -23,7 +23,7 @@ export function AnimatedLogo() {
 
 function Logo() {
   return (
-    <a className="flex items-center gap-2.5 min-w-0" href="/" title="返回首页">
+    <a className="flex min-h-10 items-center gap-2.5 min-w-0" href="/" title="返回首页">
       <img
         className="size-7 shrink-0 select-none object-cover border border-primary"
         src={author.avatar}

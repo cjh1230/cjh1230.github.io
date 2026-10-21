@@ -41,6 +41,10 @@ const { headings, Content, remarkPluginFrontmatter } = await current.render()
 
 const hasMath = /(?<!\\)\$/u.test(current.body ?? '')
 
+// On small screens the sticky sidebar is hidden; give readers a native
+// collapsible outline instead of a third-party drawer.
+const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3)
+
 const mdSlug = `/posts/${current.slug}`
 
 const mdDescription = concat(current.data.category || '', current.data.tags.join(', '))
@@ -65,7 +69,7 @@ const lastMod = current.data.lastMod || current.data.date
   mdSlug={mdSlug}
 >
   <div class="max-w-[1100px] mx-auto px-4 md:px-8">
-    <header class="py-10 lg:py-14 border-b border-primary">
+    <header class="py-8 md:py-10 lg:py-14 border-b border-primary">
       <div class="flex flex-wrap items-center gap-x-2 gap-y-1 label">
         <a class="transition-colors hover:text-accent-ink" href="/">Index</a>
         <span aria-hidden>/</span>
@@ -86,7 +90,7 @@ const lastMod = current.data.lastMod || current.data.date
       </div>
 
       <h1
-        class="mt-6 max-w-[22ch] text-3xl md:text-[2.75rem] font-bold leading-[1.1] tracking-[-0.025em]"
+        class="mt-5 md:mt-6 max-w-[22ch] text-3xl md:text-[2.75rem] font-bold leading-[1.1] tracking-[-0.025em]"
       >
         {current.data.title}
       </h1>
@@ -114,6 +118,35 @@ const lastMod = current.data.lastMod || current.data.date
           <div class="mt-6">
             <Outdate lastMod={lastMod} />
           </div>
+        )
+      }
+
+      {
+        tocHeadings.length > 0 && (
+          <details class="sheet-details mt-6 border-t border-primary lg:hidden">
+            <summary class="flex min-h-11 select-none items-center gap-3">
+              <span class="label">目录 / Contents</span>
+              <span class="h-px flex-1 bg-[rgb(var(--color-border-primary))]" aria-hidden="true" />
+              <span class="mono num text-[11px] text-secondary">{tocHeadings.length} 节</span>
+              <i
+                class="iconfont icon-down sheet-chevron text-[10px] text-secondary"
+                aria-hidden="true"
+              />
+            </summary>
+            <ul class="max-h-[50vh] overflow-y-auto pb-2">
+              {tocHeadings.map((heading) => (
+                <li>
+                  <a
+                    class="flex min-h-9 items-center border-l border-primary text-[14px] leading-snug text-secondary transition-colors hover:text-accent-ink"
+                    style={`padding-left: ${12 + Math.max(0, heading.depth - 2) * 12}px`}
+                    href={`#${heading.slug}`}
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
         )
       }
     </header>

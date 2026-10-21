@@ -17,7 +17,7 @@ export function ThemeSwitch() {
         <button
           key={option.value}
           className={clsx(
-            'flex items-center gap-1.5 px-2 py-1 text-[11px] transition-colors',
+            'flex min-h-9 items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors',
             i > 0 && 'border-l border-primary',
             theme === option.value ? 'text-accent-ink' : 'text-secondary hover:text-primary',
           )}

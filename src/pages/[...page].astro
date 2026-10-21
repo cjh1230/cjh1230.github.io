@@ -65,7 +65,7 @@ const getPageUrl = (page: number) => {
   }
 
   <div
-    class="max-w-[1200px] mx-auto px-4 md:px-8 py-12 lg:py-16 grid lg:grid-cols-[180px_1fr] gap-10 lg:gap-14"
+    class="max-w-[1200px] mx-auto px-4 md:px-8 py-6 md:py-10 lg:py-16 grid lg:grid-cols-[180px_1fr] gap-10 lg:gap-14"
   >
     <aside class="order-2 lg:order-1 border-t lg:border-t-0 border-primary pt-8 lg:pt-0">
       <div class="lg:sticky lg:top-20 space-y-8">
@@ -115,42 +115,55 @@ const getPageUrl = (page: number) => {
     </aside>
 
     <div class="order-1 lg:order-2 min-w-0">
-      <div class="mb-6 lg:hidden">
-        <div class="label mb-2">分类 / Index</div>
-        <ul class="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px]">
-          {
-            allCategories.map((category) => (
-              <li>
-                <a
-                  class="text-secondary transition-colors hover:text-accent-ink"
-                  href={`/categories/${category.slug}`}
-                >
-                  {category.name}
-                  <span class="mono num ml-1 text-[10px] opacity-60">{category.count}</span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+      <details class="sheet-details mb-5 border-b border-primary lg:hidden">
+        <summary class="flex min-h-11 select-none items-center gap-3">
+          <span class="label">分类与标签 / Browse</span>
+          <span class="h-px flex-1 bg-[rgb(var(--color-border-primary))]" aria-hidden="true"></span>
+          <span class="mono num text-[11px] text-secondary">
+            {allCategories.length} 类 · {allTags.length} 标签
+          </span>
+          <i class="iconfont icon-down sheet-chevron text-[10px] text-secondary" aria-hidden="true"
+          ></i>
+        </summary>
 
-        <div class="label mt-4 mb-2">标签 / Tags</div>
-        <div class="flex gap-x-3 overflow-x-auto pb-1 text-[12px] whitespace-nowrap">
-          {
-            hotTags.map((tag) => (
-              <a
-                class="text-secondary transition-colors hover:text-accent-ink"
-                href={`/tags/${tag.slug}`}
-              >
-                #{tag.name}
-                <span class="mono num ml-1 text-[10px] opacity-60">{tag.count}</span>
-              </a>
-            ))
-          }
-          <a class="shrink-0 text-secondary transition-colors hover:text-accent-ink" href="/tags">
-            全部 →
-          </a>
+        <div class="pb-4">
+          <ul class="flex flex-wrap gap-x-4 text-[13px]">
+            {
+              allCategories.map((category) => (
+                <li>
+                  <a
+                    class="inline-flex min-h-8 items-center text-secondary transition-colors hover:text-accent-ink"
+                    href={`/categories/${category.slug}`}
+                  >
+                    {category.name}
+                    <span class="mono num ml-1 text-[11px] opacity-60">{category.count}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="mt-1 flex flex-wrap gap-x-3 text-[13px]">
+            {
+              hotTags.map((tag) => (
+                <a
+                  class="inline-flex min-h-8 items-center text-secondary transition-colors hover:text-accent-ink"
+                  href={`/tags/${tag.slug}`}
+                >
+                  #{tag.name}
+                  <span class="mono num ml-1 text-[11px] opacity-60">{tag.count}</span>
+                </a>
+              ))
+            }
+            <a
+              class="inline-flex min-h-8 items-center text-secondary transition-colors hover:text-accent-ink"
+              href="/tags"
+            >
+              全部标签 →
+            </a>
+          </div>
         </div>
-      </div>
+      </details>
 
       <div class="flex items-baseline gap-4 border-b border-primary pb-3">
         <span class="label">01</span>
